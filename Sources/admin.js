@@ -178,6 +178,14 @@ router.delete("/edit_pokemon/:id", function (req, res) {
     });
 });
 
+router.delete("/edit_training/:id", function (req, res) {
+    const training = req.app.get("training")
+    training.find({_id: req.params.id}).remove(function () {
+        res.json({ type: action_constans.ON_ADMIN_DELETE_TRAINING,
+            deleted_id: req.params.id});
+    });
+});
+
 router.get("/edit_pokemon/:id(\\w+)", function (req, res) {
     app.specie.findOne({_id:req.params.id}, function (err, pokemon) {
         if(err){
@@ -230,12 +238,7 @@ router.patch("/edit_training/:id", function (req, res) {
     })
 });
 
-router.delete("/edit_training/:id", function (req, res) {
-    app.training.find({_id: req.params.id}).remove(function () {
-        req.flash("info", "Training has been deleted");
-        res.redirect("/admin/trainings");
-    });
-});
+
 
 
 

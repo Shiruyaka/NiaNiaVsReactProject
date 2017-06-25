@@ -289,11 +289,17 @@ export const reducers = (state = {}, action = { type: null }) =>{
                 });
 
         case c.ON_ADMIN_DELETE_POKEMON_SUCCESS:
-            alert("Specie deleted")
+        return Object.assign({}, state,
+            {
+                filtered_pokemons : removeByKey(state.filtered_pokemons.filter(p => 1 === 1), action.deleted_id)
+            });
+
+        case c.ON_ADMIN_DELETE_TRAINING:
             return Object.assign({}, state,
                 {
-                    filtered_pokemons : removeByKey(state.filtered_pokemons.filter(p => 1 === 1), action.deleted_id)
+                    filtered_trainings : removeByKey(state.filtered_trainings.filter(p => 1 === 1), action.deleted_id)
                 });
+
 
 
         default:

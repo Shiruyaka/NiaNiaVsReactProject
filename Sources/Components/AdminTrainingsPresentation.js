@@ -5,7 +5,7 @@ let trainingsHTML = [];
 
 
 
-const AdminTrainingsPresentation = ( {filtered_trainings} ) =>
+const AdminTrainingsPresentation = ( {filtered_trainings, deleteAdminTraining = f => f} ) =>
 
     <div className="container" style={{padding: 10}}>
 
@@ -72,7 +72,7 @@ const AdminTrainingsPresentation = ( {filtered_trainings} ) =>
 
                     <div className="col-xs-2 col-md-2">
                         <button className="btn btn-success" value={row._id}>Edit</button>
-                        <button className="btn btn-danger" value={row._id}>Delete</button>
+                        <button className="btn btn-danger" value={row._id} onClick={deleteAdminTraining}>Delete</button>
                     </div>
 
                 </div>

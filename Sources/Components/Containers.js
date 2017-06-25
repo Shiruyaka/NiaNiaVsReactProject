@@ -13,7 +13,7 @@ import AddTrainingAdminPresentation from "./AddTrainingAdminPresentation"
 import { showLoginForm, hideLoginForm, showSignUpDialog, hideSignUpDialog, createAccount, saveUsername,
          saveFirstname, saveLastname, savePasswd, saveReenteredPasswd, sendSignUpRequest, loginToServer,
          onHomeClick, onPokemonsClick,  onUsersClick, onTrainingsClick, getPokemonsRequestAdmin, showAddPokemonAdmin,
-         sendAddPokemonRequest, onChangeSearchInput, onChangeSortInput, getTrainingsRequestAdmin, showAddTrainingAdmin, deleteAdminPokemon
+         sendAddPokemonRequest, onChangeSearchInput, onChangeSortInput, getTrainingsRequestAdmin, showAddTrainingAdmin, deleteAdminPokemon, deleteAdminTraining
 } from "../../Actions"
 
 
@@ -186,6 +186,9 @@ export const AdminTrainings = connect(
         }),
     dispatch =>
         ({
+            deleteAdminTraining(e){
+                dispatch(deleteAdminTraining(e))
+            },
         })
 )(AdminTrainingsPresentation);
 

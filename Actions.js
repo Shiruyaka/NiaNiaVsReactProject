@@ -186,6 +186,16 @@ export const deleteAdminPokemon = (e) => dispatch => {
   );
 };
 
+export const deleteAdminTraining = (e) => dispatch => {
+    return fetchThenDispatch(
+        dispatch,
+        "admin/edit_training/"+e.target.value,
+        "DELETE",
+        JSON.stringify({})
+    );
+};
+
+
 export const onChangeSearchInput = (e) => ({
     search_for : e.target.value,
     type: c.SET_SEARCH_VALUE

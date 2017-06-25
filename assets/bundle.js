@@ -2732,7 +2732,11 @@ var AdminTrainings = exports.AdminTrainings = (0, _reactRedux.connect)(function 
         filtered_trainings: filtered_trainings
     };
 }, function (dispatch) {
-    return {};
+    return {
+        deleteAdminTraining: function deleteAdminTraining(e) {
+            dispatch((0, _Actions.deleteAdminTraining)(e));
+        }
+    };
 })(_AdminTrainingsPresentation2.default);
 
 var AddPokemonAdmin = exports.AddPokemonAdmin = (0, _reactRedux.connect)(function (_ref10) {
@@ -7494,6 +7498,14 @@ var reducers = exports.reducers = function reducers() {
                 }), action.deleted_id)
             });
 
+        case _ActionConstants2.default.ON_ADMIN_DELETE_TRAINING:
+            alert("Specie deleted");
+            return Object.assign({}, state, {
+                filtered_trainings: removeByKey(state.filtered_trainings.filter(function (p) {
+                    return 1 === 1;
+                }), action.deleted_id)
+            });
+
         default:
             return state;
     }
@@ -7546,6 +7558,7 @@ var constants = {
 
     ON_ADMIN_DELETE_POKEMON_SUCCESS: "ON_ADMIN_DELETE_POKEMON_SUCCESS",
     ON_ADMIN_DELETE_POKEMON_FAILED: "ON_ADMIN_DELETE_POKEMON_FAILED",
+    ON_ADMIN_DELETE_TRAINING: "ON_ADMIN_DELETE_TRAINING",
 
     SET_SEARCH_VALUE: "SET_SEARCH_VALUE",
     SET_SORT_VALUE: "SET_SORT_VALUE"
@@ -7564,7 +7577,7 @@ exports.default = constants;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.onChangeSortInput = exports.onChangeSearchInput = exports.deleteAdminPokemon = exports.sendAddPokemonRequest = exports.showAddPokemonAdmin = exports.onPokemonsClick = exports.onUsersClick = exports.onTrainingsClick = exports.onHomeClick = exports.showAddTrainingAdmin = exports.getTrainingsRequestAdmin = exports.getPokemonsRequestAdmin = exports.sendSignUpRequest = exports.loginToServer = exports.saveReenteredPasswd = exports.savePasswd = exports.saveLastname = exports.saveFirstname = exports.saveUsername = exports.hideSignUpDialog = exports.showSignUpDialog = exports.hideLoginForm = exports.showLoginForm = undefined;
+exports.onChangeSortInput = exports.onChangeSearchInput = exports.deleteAdminTraining = exports.deleteAdminPokemon = exports.sendAddPokemonRequest = exports.showAddPokemonAdmin = exports.onPokemonsClick = exports.onUsersClick = exports.onTrainingsClick = exports.onHomeClick = exports.showAddTrainingAdmin = exports.getTrainingsRequestAdmin = exports.getPokemonsRequestAdmin = exports.sendSignUpRequest = exports.loginToServer = exports.saveReenteredPasswd = exports.savePasswd = exports.saveLastname = exports.saveFirstname = exports.saveUsername = exports.hideSignUpDialog = exports.showSignUpDialog = exports.hideLoginForm = exports.showLoginForm = undefined;
 
 var _ActionConstants = __webpack_require__(61);
 
@@ -7756,6 +7769,12 @@ var sendAddPokemonRequest = exports.sendAddPokemonRequest = function sendAddPoke
 var deleteAdminPokemon = exports.deleteAdminPokemon = function deleteAdminPokemon(e) {
     return function (dispatch) {
         return fetchThenDispatch(dispatch, "admin/edit_pokemon/" + e.target.id, "DELETE", JSON.stringify({}));
+    };
+};
+
+var deleteAdminTraining = exports.deleteAdminTraining = function deleteAdminTraining(e) {
+    return function (dispatch) {
+        return fetchThenDispatch(dispatch, "admin/edit_training/" + e.target.value, "DELETE", JSON.stringify({}));
     };
 };
 
@@ -11489,6 +11508,28 @@ var AdminPokemonPresentation = function AdminPokemonPresentation(_ref) {
             "div",
             { className: "container", style: { padding: 10 } },
             _react2.default.createElement(_Containers.FilterPanel, null),
+            _react2.default.createElement(
+                "div",
+                { className: "row", style: { margin_bottom: 20 } },
+                _react2.default.createElement(
+                    "div",
+                    { className: "col-xs-5 col-md-4" },
+                    _react2.default.createElement(
+                        "h4",
+                        null,
+                        "Name"
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "col-xs-5 col-md-4" },
+                    _react2.default.createElement(
+                        "h4",
+                        null,
+                        "Photo"
+                    )
+                )
+            ),
             filtered_pokemons.map(function (row, i) {
                 return _react2.default.createElement(
                     "div",
@@ -11512,7 +11553,7 @@ var AdminPokemonPresentation = function AdminPokemonPresentation(_ref) {
                         { className: "col-xs-2 col-md-2" },
                         _react2.default.createElement(
                             "button",
-                            { className: "btn btn-primary btn-block", id: row._id, onClick: deleteAdminPokemon },
+                            { className: "btn btn-danger", id: row._id, onClick: deleteAdminPokemon },
                             "DELETE"
                         )
                     )
@@ -11546,7 +11587,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var trainingsHTML = [];
 
 var AdminTrainingsPresentation = function AdminTrainingsPresentation(_ref) {
-    var filtered_trainings = _ref.filtered_trainings;
+    var filtered_trainings = _ref.filtered_trainings,
+        _ref$deleteAdminTrain = _ref.deleteAdminTraining,
+        deleteAdminTraining = _ref$deleteAdminTrain === undefined ? function (f) {
+        return f;
+    } : _ref$deleteAdminTrain;
     return _react2.default.createElement(
         "div",
         { className: "container", style: { padding: 10 } },
@@ -11680,7 +11725,7 @@ var AdminTrainingsPresentation = function AdminTrainingsPresentation(_ref) {
                     ),
                     _react2.default.createElement(
                         "button",
-                        { className: "btn btn-danger", value: row._id },
+                        { className: "btn btn-danger", value: row._id, onClick: deleteAdminTraining },
                         "Delete"
                     )
                 )
