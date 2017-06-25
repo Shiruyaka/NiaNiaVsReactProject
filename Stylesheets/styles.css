@@ -1,0 +1,165 @@
+
+#main_panel{
+    margin: 10px;
+    background-color: white;
+}
+
+#info_account_created{
+    text-align: center;
+}
+
+
+#sign_up_view{
+    background-color: white;
+    padding: 20px;
+}
+
+form div {
+    float: left;
+}
+
+#login_panel{
+    margin-right: 10px;
+}
+
+#log_sign_button{
+    margin: 10px;
+}
+
+#logged_panel{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+#logged_panel_text{
+    display:inline-block;
+    float: left;
+}
+
+#logged_panel_button{
+    display:inline-block;
+    float: left;
+}
+
+#sign_up_view{
+    width: 40%;
+}
+
+#sign_up_view input{
+    margin-bottom: 10px;
+}
+
+#menu_panel{
+    margin: 10px;
+    background-color: white;
+}
+
+button.accordion {
+    padding: 10px;
+    background-color: white;
+    color: #444;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #337ab7;
+}
+
+div.panel {
+    padding: 0 18px;
+    width: 100%;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+div.panel.collapsed{
+    max-height: 1000px;
+}
+
+body, html {
+    background-image: url("back1.png")
+}
+
+.row{
+    background-color: white;
+}
+
+table{
+    background-color: white;
+}
+
+#search_panel{
+    margin-bottom: 20px;
+}
+/*div.container{*/
+/*background-color: white;*/
+/*}*/
+
+.wrapper {
+    /* The height needs to be set to a fixed value for the effect to work.
+     * 100vh is the full height of the viewport. */
+    height: 100vh;
+    /* The scaling of the images would add a horizontal scrollbar, so disable x overflow. */
+    overflow-x: hidden;
+    /* Enable scrolling on the page. */
+    overflow-y: auto;
+    /* Set the perspective to 2px. This is essentailly the simulated distance from the viewport to transformed objects.*/
+    perspective: 2px;
+}
+
+.section {
+    /* Needed for children to be absolutely positioned relative to the parent. */
+    position: relative;
+    /* The height of the container. Must be set, but it doesn't really matter what the value is. */
+    height: 100vh;
+
+    /* For text formatting. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 0 0 5px #000;
+}
+
+#main_part{
+    position: relative;
+    height: 100vh;
+    background-color: white;
+}
+
+.parallax::after {
+    /* Display and position the pseudo-element */
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /* Move the pseudo-element back away from the camera,
+     * then scale it back up to fill the viewport.
+     * Because the pseudo-element is further away, it appears to move more slowly, like in real life. */
+    transform: translateZ(-1px) scale(1.5);
+    /* Force the background image to fill the whole element. */
+    background-size: 100%;
+    /* Keep the image from overlapping sibling elements. */
+    z-index: -1;
+}
+
+/* Sets the actual background images to adorable kitties. This part is crucial. */
+.bg1::after {
+    background-image: url('game3.png');
+}
+
+.bg2::after {
+    background-color: white;
+}
