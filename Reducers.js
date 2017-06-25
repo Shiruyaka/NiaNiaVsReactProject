@@ -16,8 +16,89 @@ function sortPokemons(value, array) {
                 if (a.name > b.name) return -1;
                 return 0;
             });
+
+        case "Health Up":
+            return array.sort(function (a, b) {
+                if (a.health < b.health) return -1;
+                if (a.health > b.health) return 1;
+                return 0;
+            });
+
+        case "Health Down":
+            return array.sort(function (a, b) {
+                if (a.health < b.health) return 1;
+                if (a.health > b.health) return -1;
+                return 0;
+            });
+
+        case "Agility Up":
+            return array.sort(function (a, b) {
+                if (a.agility < b.agility) return -1;
+                if (a.agility > b.agility) return 1;
+                return 0;
+            });
+
+        case "Agility Down":
+            return array.sort(function (a, b) {
+                if (a.agility < b.agility) return 1;
+                if (a.agility > b.agility) return -1;
+                return 0;
+            });
+
+        case "Attack Up":
+            return array.sort(function (a, b) {
+                if (a.attack < b.attack) return -1;
+                if (a.attack > b.attack) return 1;
+                return 0;
+            });
+
+        case "Attack Down":
+            return array.sort(function (a, b) {
+                if (a.attack < b.attack) return 1;
+                if (a.attack > b.attack) return -1;
+                return 0;
+            });
+
+        case "Defence Up":
+            return array.sort(function (a, b) {
+                if (a.defence < b.defence) return -1;
+                if (a.defence > b.defence) return 1;
+                return 0;
+            });
+
+        case "Defence Down":
+            return array.sort(function (a, b) {
+                if (a.defence < b.defence) return 1;
+                if (a.defence > b.defence) return -1;
+                return 0;
+            });
+
+        case "Duration Up":
+            return array.sort(function (a, b) {
+                if (a.duration < b.duration) return -1;
+                if (a.duration > b.duration) return 1;
+                return 0;
+            });
+
+        case "Duration Down":
+            return array.sort(function (a, b) {
+                if (a.duration < b.duration) return 1;
+                if (a.duration > b.duration) return -1;
+                return 0;
+            });
     }
 
+}
+
+function removeByKey(array, params){
+    array.some(function(item, index) {
+        if(array[index]["_id"] === params){
+            array.splice(index, 1);
+            return true;
+        }
+        return false;
+    });
+    return array;
 }
 
 export const reducers = (state = {}, action = { type: null }) =>{
@@ -151,13 +232,19 @@ export const reducers = (state = {}, action = { type: null }) =>{
                     accountCreated:false,
                     logged: true,
                     user: action.user,
+                    pokemons : [],
+                    filtered_pokemons : [],
+                    trainings : [],
+                    filtered_trainings : []
+
 
                 });
 
         case c.SET_SEARCH_VALUE:
             return Object.assign({}, state, {
                 search_for: action.search_for,
-                filtered_pokemons: state.pokemons.filter(row => row.name.toLowerCase().includes(action.search_for.toString().toLowerCase()))
+                filtered_pokemons: state.pokemons.filter(row => row.name.toLowerCase().includes(action.search_for.toString().toLowerCase())),
+                filtered_trainings: state.trainings.filter(row => row.name.toLowerCase().includes(action.search_for.toString().toLowerCase()))
             });
 
         case c.POKEMON_ADMIN:
@@ -168,10 +255,19 @@ export const reducers = (state = {}, action = { type: null }) =>{
                     activePage: "PokemonAdmin"
                 });
 
+        case c.TRAINING_ADMIN:
+            return Object.assign({}, state,
+                {
+                    trainings: sortPokemons("Name Up", action.trainings),
+                    filtered_trainings: action.trainings,
+                    activePage: "TrainingAdmin"
+                });
+
         case c.SET_SORT_VALUE:
             return Object.assign({}, state,
                 {
-                    filtered_pokemons: sortPokemons(action.sort_by, state.pokemons.filter(p => 1 === 1)),
+                    filtered_pokemons: sortPokemons(action.sort_by, state.filtered_pokemons.filter(p => 1 === 1)),
+                    filtered_trainings : sortPokemons(action.sort_by, state.filtered_trainings.filter(p => 1 === 1))
                 });
 
         case c.SHOW_ADD_POKEMON_ADMIN_PANEL:
@@ -179,6 +275,27 @@ export const reducers = (state = {}, action = { type: null }) =>{
                 {
                     activePage: "AddPokemonAdmin"
                 });
+
+        case c.SHOW_ADD_TRAINING_ADMIN_PANEL:
+            return Object.assign({}, state,
+                {
+                    activePage: "AddTrainingAdmin"
+                });
+
+        case c.ON_ADMIN_DELETE_POKEMON_FAILED:
+            alert("You cant remove specie if there are pokemons of this specie")
+            return Object.assign({}, state,
+                {
+                });
+
+        case c.ON_ADMIN_DELETE_POKEMON_SUCCESS:
+            alert("Specie deleted")
+            return Object.assign({}, state,
+                {
+                    filtered_pokemons : removeByKey(state.filtered_pokemons.filter(p => 1 === 1), action.deleted_id)
+                });
+
+
         default:
             return state;
     }

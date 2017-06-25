@@ -12,7 +12,7 @@ let pokemonsHTML = [];
  }*/
 
 
-const AdminPokemonPresentation = ( {pokemons, search_for, filtered_pokemons} ) =>
+const AdminPokemonPresentation = ( {pokemons, search_for, filtered_pokemons, deleteAdminPokemon = f => f} ) =>
     /*<table>
      <tr>
      <th>Name</th>
@@ -48,7 +48,7 @@ const AdminPokemonPresentation = ( {pokemons, search_for, filtered_pokemons} ) =
                     </div>
 
                     <div className="col-xs-2 col-md-2">
-                        <button className="btn btn-primary btn-block">DELETE</button>
+                        <button className="btn btn-primary btn-block" id={row._id} onClick={deleteAdminPokemon}>DELETE</button>
                     </div>
                 </div>
             )

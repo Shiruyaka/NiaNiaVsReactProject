@@ -163,3 +163,7 @@ table{
 .bg2::after {
     background-color: white;
 }
+
+#add_admin_training{
+    margin-bottom: 10px;
+}

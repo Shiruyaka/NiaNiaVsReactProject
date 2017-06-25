@@ -22,6 +22,8 @@ const schedule = require("./Sources/Models/schedule");
 
 let app = express();
 app.set("specie", specie);
+app.set("training", training);
+app.set("pokemon", pokemons);
 
 
 let cookieParser = require("cookie-parser");

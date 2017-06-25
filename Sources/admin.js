@@ -101,6 +101,22 @@ router.get("/pokemons", function (req, res) {
     })
 });
 
+
+router.get("/trainings", function (req, res) {
+
+    const training = req.app.get("training")
+    training.find({}, function (err, trainings) {
+        if(err){
+            res.send(err);
+        }else{
+            console.log(trainings);
+
+            res.json({ type: action_constans.TRAINING_ADMIN,
+                trainings: trainings});
+        }
+    });
+});
+
 router.use(express.static(path.resolve(__dirname, "pokemon_images")));
 
 router.post("/add_pokemon", upload.single('file'), function (req, res) {
@@ -129,12 +145,14 @@ router.post("/add_pokemon", upload.single('file'), function (req, res) {
 });
 
 router.delete("/edit_pokemon/:id", function (req, res) {
-    app.specie.findOne({_id:req.params.id}, function (err, spiece) {
+    const specie = req.app.get("specie");
+    const pokemon = req.app.get("pokemon");
+    specie.findOne({_id:req.params.id}, function (err, spiece) {
         if(err){
             console.log(err);
         }else{
 
-            app.pokemons.find({specie: spiece.name}, function (err, pokes) {
+            pokemon.find({specie: spiece.name}, function (err, pokes) {
                 if(err){
                     console.log(err);
                 }else{
@@ -145,14 +163,13 @@ router.delete("/edit_pokemon/:id", function (req, res) {
                                 if (err) {
                                     console.log(err);
                                 } else {
-                                    req.flash("info", "Spiece has been deleted");
-                                    res.redirect("/admin/pokemons");
+                                    res.json({ type: action_constans.ON_ADMIN_DELETE_POKEMON_SUCCESS,
+                                    deleted_id: req.params.id});
                                 }
                             });
                         });
                     }else{
-                        req.flash("info", "You cant remove specie if there are pokemons of this specie");
-                        res.redirect("/admin/pokemons");
+                        res.json({ type: action_constans.ON_ADMIN_DELETE_POKEMON_FAILED});
                     }
                 }
             });
@@ -220,18 +237,7 @@ router.delete("/edit_training/:id", function (req, res) {
     });
 });
 
-router.get("/trainings", function (req, res) {
-    navibar["page"] = req.url;
 
-    app.training.find({}, function (err, trainings) {
-        if(err){
-            res.send(err);
-        }else{
-            navibar["trainings"] = trainings;
-            res.render("admin_training", navibar);
-        }
-    });
-});
 
 router.post("/new_training", function (req, res, next) {
 

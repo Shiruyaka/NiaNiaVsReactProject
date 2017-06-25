@@ -7,11 +7,13 @@ import MenuPresentation from "./MenuRepresentation"
 import LoggedFormPresentation from "./LoggedFormPresentation"
 import AdminPokemonPresentation from "./AdminPokemonPresentation"
 import AddPokemonAdminPresentation from "./AddPokemonAdminPresentation"
+import AdminTrainingsPresentation from "./AdminTrainingsPresentation"
 import FilterSearchPanelPresentation from "./FilterSearchPanelPresentation"
+import AddTrainingAdminPresentation from "./AddTrainingAdminPresentation"
 import { showLoginForm, hideLoginForm, showSignUpDialog, hideSignUpDialog, createAccount, saveUsername,
          saveFirstname, saveLastname, savePasswd, saveReenteredPasswd, sendSignUpRequest, loginToServer,
          onHomeClick, onPokemonsClick,  onUsersClick, onTrainingsClick, getPokemonsRequestAdmin, showAddPokemonAdmin,
-         sendAddPokemonRequest, onChangeSearchInput, onChangeSortInput
+         sendAddPokemonRequest, onChangeSearchInput, onChangeSortInput, getTrainingsRequestAdmin, showAddTrainingAdmin, deleteAdminPokemon
 } from "../../Actions"
 
 
@@ -98,6 +100,12 @@ export const Menu = connect(
             },
             onAddPokemonClick(){
                 dispatch(showAddPokemonAdmin())
+            },
+            onTrainingAdminClick(e){
+              dispatch(getTrainingsRequestAdmin())
+            },
+            onAddAdminTrainingClick(e){
+              dispatch(showAddTrainingAdmin())
             }
         })
 )(MenuPresentation);
@@ -142,8 +150,8 @@ export const SignUpDialog = connect(
 
 
 export const FilterPanel = connect(
-    ({}) =>
-        ({}),
+    ({activePage}) =>
+        ({activePage:activePage}),
     dispatch =>
         ({
             onChangeSearchInput(e){
@@ -164,8 +172,22 @@ export const AdminPokemons = connect(
         }),
     dispatch =>
         ({
+            deleteAdminPokemon(e){
+                dispatch(deleteAdminPokemon(e))
+            }
         })
 )(AdminPokemonPresentation);
+
+
+export const AdminTrainings = connect(
+    ({filtered_trainings})=>
+        ({
+            filtered_trainings: filtered_trainings
+        }),
+    dispatch =>
+        ({
+        })
+)(AdminTrainingsPresentation);
 
 export const AddPokemonAdmin = connect(
     ({}) =>
@@ -177,3 +199,12 @@ export const AddPokemonAdmin = connect(
             }
         })
 )(AddPokemonAdminPresentation);
+
+export const AddTrainingAdmin = connect(
+    ({}) =>
+        ({}),
+    dispatch =>
+        ({
+        })
+)(AddTrainingAdminPresentation);
+

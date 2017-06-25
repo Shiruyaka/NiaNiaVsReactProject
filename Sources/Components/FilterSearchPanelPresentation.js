@@ -1,6 +1,6 @@
 import React from "react";
 
-const FilterSearchPanelPresentation = ({onChangeSearchInput = f => f, onChangeSortInput = f => f}) => {
+const FilterSearchPanelPresentation = ({activePage, onChangeSearchInput = f => f, onChangeSortInput = f => f}) => {
     return (
         <div className="row" id="search_panel">
 
@@ -9,10 +9,37 @@ const FilterSearchPanelPresentation = ({onChangeSearchInput = f => f, onChangeSo
             </div>
 
             <div className="col-xs-5 col-md-3">
-                <select className="form-control" onChange={onChangeSortInput} onSelect={onChangeSortInput}>
-                    <option>Name Up</option>
-                    <option>Name Down</option>
-                </select>
+
+                {activePage === "TrainingAdmin" ?
+                    <select className="form-control" onChange={onChangeSortInput} onSelect={onChangeSortInput}>
+                        <option>Name Up</option>
+                        <option>Name Down</option>
+
+                        <option>Health Up</option>
+                        <option>Health Down</option>
+
+                        <option>Agility Up</option>
+                        <option>Agility Down</option>
+
+                        <option>Attack Up</option>
+                        <option>Attack Down</option>
+
+                        <option>Defence Up</option>
+                        <option>Defence Down</option>
+
+                        <option>Duration Up</option>
+                        <option>Duration Down</option>
+
+                    </select>
+
+                    :
+
+                    <select className="form-control" onChange={onChangeSortInput} onSelect={onChangeSortInput}>
+                        <option>Name Up</option>
+                        <option>Name Down</option>
+
+                    </select>}
+
             </div>
 
         </div>

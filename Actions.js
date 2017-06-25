@@ -109,6 +109,8 @@ export const sendSignUpRequest = (e) => dispatch => {
         }));
 };
 
+
+
 export const getPokemonsRequestAdmin = (e) => dispatch => {
      fetchThenDispatch(
         dispatch,
@@ -117,6 +119,20 @@ export const getPokemonsRequestAdmin = (e) => dispatch => {
         null
     )
 };
+
+export const getTrainingsRequestAdmin = (e) => dispatch => {
+    fetchThenDispatch(
+        dispatch,
+        'admin/trainings',
+        'GET',
+        null
+    )
+};
+
+export const showAddTrainingAdmin = () =>
+    ({
+        type: c.SHOW_ADD_TRAINING_ADMIN_PANEL
+    });
 
 export const onHomeClick = (e) =>
     ({
@@ -159,6 +175,15 @@ export const sendAddPokemonRequest = (e) => dispatch =>{
         e.target.elements.name.value,
         e.target.elements.file.value
     );
+};
+
+export const deleteAdminPokemon = (e) => dispatch => {
+  return fetchThenDispatch(
+      dispatch,
+      "admin/edit_pokemon/"+e.target.id,
+      "DELETE",
+      JSON.stringify({})
+  );
 };
 
 export const onChangeSearchInput = (e) => ({
