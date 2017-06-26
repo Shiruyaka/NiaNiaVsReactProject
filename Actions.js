@@ -22,16 +22,15 @@ const fetchThenDispatch = (dispatch, url, method, body) =>
         .catch(logError);
 
 const fetchThenDispatchWithPicture = (dispatch, url, method, name, file) => {
-    let fData = new FormData();
-    fData.append("file", file);
-    fData.append("name", name);
-
+    let formData = new FormData();
+    formData.append("file", file);
+    formData.append("name",body.name);
     return fetch(
         url,
         {
             method,
             credentials: 'same-origin',
-            body: fData
+            body: formData
         }
     ).then(parseResponse).then(dispatch).catch(logError);
 };
@@ -81,10 +80,6 @@ export const saveReenteredPasswd = (e) => ({
     type: c.SAVE_REENTERED_PASSWD
 });
 
-export const saveNewPokemonName = (e) => ({
-    newPokemonName: e.target.value,
-    type: c.SAVE_NEW_POKEMON_NAME
-});
 
 export const loginToServer = e => dispatch => {
     e.preventDefault();
@@ -177,16 +172,17 @@ export const showAddPokemonAdmin = () =>
         type: c.SHOW_ADD_POKEMON_ADMIN_PANEL
     });
 
-export const sendAddPokemonRequest = (file, name) => dispatch =>{
+export const sendAddPokemonRequest = (e) => dispatch =>{
 
-    alert(name);
+    alert(e.target.elements.name.value);
+    alert(e.target.elements.file.value);
 
     return fetchThenDispatchWithPicture(
         dispatch,
         "admin/add_pokemon",
         "POST",
-        name,
-        file
+        e.target.elements.name.value,
+        e.target.elements.file.value
     );
 };
 
@@ -222,12 +218,5 @@ export const onChangeSortInput = (e) => {
             sort_by: e.target.value,
             type: c.SET_SORT_VALUE
         });
-};
-
-export const onPictureLoad = (e) => {
-    return({
-        type:c.ON_LOAD_PICTURE,
-        pictureToSend: e.target.files[0]
-    })
 };
 

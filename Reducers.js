@@ -312,50 +312,25 @@ export const reducers = (state = {}, action = { type: null }) =>{
                 });
 
         case c.ON_ADMIN_DELETE_POKEMON_FAILED:
-
+            alert("You cant remove specie if there are pokemons of this specie")
             return Object.assign({}, state,
                 {
                 });
 
         case c.ON_ADMIN_DELETE_POKEMON_SUCCESS:
-<<<<<<< HEAD
-
-=======
         return Object.assign({}, state,
             {
                 filtered_pokemons : removeByKey(state.filtered_pokemons.filter(p => 1 === 1), action.deleted_id)
             });
 
         case c.ON_ADMIN_DELETE_TRAINING:
->>>>>>> origin/master
             return Object.assign({}, state,
                 {
                     filtered_trainings : removeByKey(state.filtered_trainings.filter(p => 1 === 1), action.deleted_id)
                 });
 
-        case c.ON_LOAD_PICTURE:
-            console.log(action);
-            return Object.assign({}, state,
-                {
-                    pictureToSend: action.pictureToSend
-                });
 
-<<<<<<< HEAD
-        case c.SAVE_NEW_POKEMON_NAME:
-            return Object.assign({}, state,
-                {
-                    newPokemonName: action.newPokemonName
-                });
-        case c.NEW_POKEMON_ADDED:
-            return Object.assign({}, state,
-                {
-                    pokemon_added: true,
-                    pictureToSend: null,
-                    newPokemonName: ""
-                });
-=======
 
->>>>>>> origin/master
         default:
             return state;
     }

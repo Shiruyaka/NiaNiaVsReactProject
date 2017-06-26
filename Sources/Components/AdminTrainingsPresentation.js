@@ -9,35 +9,11 @@ const AdminTrainingsPresentation = ( {filtered_trainings, deleteAdminTraining = 
 
     <div className="container" style={{padding: 10}}>
 
+        <h3>Training List</h3>
+        <br/>
+
         <FilterPanel/>
 
-        <div className="row" style={{margin_bottom: 20}}>
-
-            <div className="col-xs-6 col-md-1">
-                <h4>Name</h4>
-            </div>
-
-
-            <div className="col-xs-6 col-md-1">
-                <h4>Health </h4>
-            </div>
-
-            <div className="col-xs-6 col-md-1">
-                <h4>Agility </h4>
-            </div>
-
-            <div className="col-xs-6 col-md-1">
-                <h4>Attack </h4>
-            </div>
-
-            <div className="col-xs-6 col-md-2">
-                <h4>Defence</h4>
-            </div>
-
-            <div className="col-xs-6 col-md-1">
-                <h4>Duration</h4>
-            </div>
-        </div>
 
         {filtered_trainings.map(function(row, i){
             return (
@@ -49,24 +25,24 @@ const AdminTrainingsPresentation = ( {filtered_trainings, deleteAdminTraining = 
 
 
                     <div className="col-xs-6 col-md-1">
-                        <h5>{row.health} </h5>
+                        <h5>health +{row.health} </h5>
                     </div>
 
                     <div className="col-xs-6 col-md-1">
-                        <h5>{row.agility} </h5>
+                        <h5>agility +{row.agility} </h5>
                     </div>
 
                     <div className="col-xs-6 col-md-1">
-                        <h5>{row.attack} </h5>
+                        <h5>attack +{row.attack} </h5>
                     </div>
 
 
                     <div className="col-xs-6 col-md-2">
-                        <h5>{row.defence}</h5>
+                        <h5>defence +{row.defence}</h5>
                     </div>
 
-                    <div className="col-xs-6 col-md-1">
-                        <h5>{row.duration}</h5>
+                    <div className="col-xs-6 col-md-2">
+                        <h5>duration: {row.duration} min</h5>
                     </div>
 
 

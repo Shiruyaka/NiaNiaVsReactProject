@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97027aa6-dd51-49ee-962f-3186fc33cf44" name="Default" comment="sort, filter, training, delete user">
+    <list default="true" id="97027aa6-dd51-49ee-962f-3186fc33cf44" name="Default" comment="poprawa widoków">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Sources/pokemon_images/9e3fc04cfe1776ee3c640bffec2a4dc0.jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Sources/pokemon_images/c7e17a39cbc6081fb0a66e788d2d48a9.jpeg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ActionConstants.js" afterPath="$PROJECT_DIR$/ActionConstants.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Actions.js" afterPath="$PROJECT_DIR$/Actions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Reducers.js" afterPath="$PROJECT_DIR$/Reducers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sources/Components/AddPokemonAdminPresentation.js" afterPath="$PROJECT_DIR$/Sources/Components/AddPokemonAdminPresentation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sources/Components/AddTrainingAdminPresentation.js" afterPath="$PROJECT_DIR$/Sources/Components/AddTrainingAdminPresentation.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sources/Components/AdminPokemonPresentation.js" afterPath="$PROJECT_DIR$/Sources/Components/AdminPokemonPresentation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sources/Components/AdminTrainingsPresentation.js" afterPath="$PROJECT_DIR$/Sources/Components/AdminTrainingsPresentation.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sources/Components/Containers.js" afterPath="$PROJECT_DIR$/Sources/Components/Containers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sources/admin.js" afterPath="$PROJECT_DIR$/Sources/admin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Stylesheets/styles.css" afterPath="$PROJECT_DIR$/Stylesheets/styles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/bundle.js" afterPath="$PROJECT_DIR$/assets/bundle.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -28,31 +34,54 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="AdminTrainingsPresentation.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sources/Components/AdminTrainingsPresentation.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddTrainingAdminPresentation.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sources/Components/AddTrainingAdminPresentation.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="7" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Sources/admin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="122" column="85" lean-forward="false" selection-start-line="122" selection-start-column="85" selection-end-line="122" selection-end-column="85" />
+              <folding>
+                <element signature="e#1050#2675#0" expanded="false" />
+                <element signature="e#3220#3534#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AddPokemonAdminPresentation.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sources/Components/AddPokemonAdminPresentation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+            <state relative-caret-position="102">
+              <caret line="6" column="12" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminPokemonPresentation.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Sources/Components/AdminPokemonPresentation.js">
+      <file leaf-file-name="styles.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stylesheets/styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SignUpDialogPresentation.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources/Components/SignUpDialogPresentation.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="421">
+              <caret line="170" column="0" lean-forward="true" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -61,8 +90,8 @@
       <file leaf-file-name="Containers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sources/Components/Containers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="205" column="43" lean-forward="false" selection-start-line="205" selection-start-column="43" selection-end-line="205" selection-end-column="43" />
+            <state relative-caret-position="204">
+              <caret line="186" column="28" lean-forward="true" selection-start-line="186" selection-start-column="28" selection-end-line="186" selection-end-column="28" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -70,35 +99,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActionConstants.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ActionConstants.js">
+      <file leaf-file-name="AppPresentation.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sources/Components/AppPresentation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="41" column="37" lean-forward="false" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-585">
-              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="29" column="24" lean-forward="false" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="109" />
               <folding>
-                <element signature="e#44#74#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources/admin.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="124" column="25" lean-forward="false" selection-start-line="124" selection-start-column="25" selection-end-line="124" selection-end-column="25" />
-              <folding>
-                <marker date="1498468133947" expanded="true" signature="3681:4480" ph="{...}" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,44 +114,34 @@
       <file leaf-file-name="Reducers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Reducers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="312" column="20" lean-forward="false" selection-start-line="312" selection-start-column="20" selection-end-line="312" selection-end-column="33" />
+            <state relative-caret-position="459">
+              <caret line="302" column="43" lean-forward="true" selection-start-line="302" selection-start-column="43" selection-end-line="302" selection-end-column="43" />
               <folding>
-                <element signature="n#!!block;n#sortPokemons#0" expanded="false" />
-                <element signature="e#3658#3713#0" expanded="false" />
-                <element signature="e#4919#5059#0" expanded="false" />
-                <element signature="e#5135#5270#0" expanded="false" />
-                <element signature="e#5356#5601#0" expanded="false" />
+                <element signature="e#4195#4250#0" expanded="false" />
+                <element signature="e#5456#5596#0" expanded="false" />
+                <element signature="e#5672#5807#0" expanded="false" />
+                <element signature="e#5893#6138#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminTrainingsPresentation.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources/Components/AdminTrainingsPresentation.js">
+      <file leaf-file-name="AdminPokemonPresentation.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sources/Components/AdminPokemonPresentation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="68" column="41" lean-forward="false" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="41" />
+            <state relative-caret-position="646">
+              <caret line="48" column="18" lean-forward="true" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Actions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Actions.js">
+      <file leaf-file-name="AdminUsersPresentation.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sources/Components/AdminUsersPresentation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-160">
-              <caret line="179" column="12" lean-forward="false" selection-start-line="179" selection-start-column="12" selection-end-line="179" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-                <element signature="e#1006#1045#0" expanded="false" />
-                <element signature="e#1089#1128#0" expanded="false" />
-                <element signature="e#1265#1308#0" expanded="false" />
-                <element signature="e#1348#1408#0" expanded="false" />
-                <element signature="e#1551#1611#0" expanded="false" />
-                <element signature="e#1649#1704#0" expanded="false" />
-                <element signature="e#1751#1826#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="357">
+              <caret line="31" column="41" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -181,11 +178,12 @@
       <find>pOKEMONaDMIN</find>
       <find>tra</find>
       <find>delete</find>
-      <find>upload</find>
+      <find>active</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="SOFT" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -211,21 +209,22 @@
         <option value="$PROJECT_DIR$/Sources/set_up_passport.js" />
         <option value="$PROJECT_DIR$/Sources/Models/specie.js" />
         <option value="$PROJECT_DIR$/Sources/Components/LoginFormPresentation.js" />
-        <option value="$PROJECT_DIR$/Sources/Components/MenuRepresentation.js" />
-        <option value="$PROJECT_DIR$/Sources/Components/AppPresentation.js" />
-        <option value="$PROJECT_DIR$/Sources/Components/AddTrainingAdminPresentation.js" />
-        <option value="$PROJECT_DIR$/Stylesheets/styles.css" />
         <option value="$PROJECT_DIR$/Sources/Models/training.js" />
-        <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/Sources/Components/AdminTrainingsPresentation.js" />
         <option value="$PROJECT_DIR$/Sources/Components/FilterSearchPanelPresentation.js" />
+        <option value="$PROJECT_DIR$/Sources/Components/MenuRepresentation.js" />
+        <option value="$PROJECT_DIR$/Sources/Components/AdminUsersPresentation.js" />
         <option value="$PROJECT_DIR$/Actions.js" />
         <option value="$PROJECT_DIR$/ActionConstants.js" />
-        <option value="$PROJECT_DIR$/Sources/admin.js" />
-        <option value="$PROJECT_DIR$/Reducers.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/Sources/Components/AppPresentation.js" />
         <option value="$PROJECT_DIR$/Sources/Components/Containers.js" />
+        <option value="$PROJECT_DIR$/Reducers.js" />
+        <option value="$PROJECT_DIR$/Stylesheets/styles.css" />
         <option value="$PROJECT_DIR$/Sources/Components/AddPokemonAdminPresentation.js" />
+        <option value="$PROJECT_DIR$/Sources/Components/AddTrainingAdminPresentation.js" />
+        <option value="$PROJECT_DIR$/Sources/Components/AdminTrainingsPresentation.js" />
         <option value="$PROJECT_DIR$/Sources/Components/AdminPokemonPresentation.js" />
+        <option value="$PROJECT_DIR$/Sources/admin.js" />
       </list>
     </option>
   </component>
@@ -239,11 +238,12 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="1358" />
+    <option name="y" value="76" />
     <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="height" value="1096" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -259,7 +259,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -314,13 +313,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pokemon_images" />
+              <option name="myItemId" value="Models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NiaNiaVsReactProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NiaNiaVsReactProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Sources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,18 +350,19 @@
     <property name="SearchEverywhereHistoryKey" value="alert&#9;null&#9;null&#10;renderComponentsToHTML&#9;null&#9;null&#10;login&#9;null&#9;null&#10;onLoginFormHide&#9;null&#9;null&#10;onLoginFormShow&#9;null&#9;null&#10;user&#9;null&#9;null&#10;show_sign_up_dialog&#9;null&#9;null&#10;createStore&#9;null&#9;null&#10;User&#9;null&#9;null" />
     <property name="nodejs.mocha.mocha_node_package_dir" value="C:\Users\tomas\Desktop\dumb\node_modules\mocha" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ola\Desktop\dumb\dumb\Sources\Components" />
+      <recent name="C:\Users\tomas\Desktop\dumb" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\tomas\Desktop\Programowanie w sieci WWW\NiaNiaVsReactProject\Sources" />
       <recent name="C:\Users\tomas\Desktop\dumb\Sources\Components" />
       <recent name="C:\Users\tomas\Desktop\dumb\Stylesheets" />
       <recent name="C:\Users\Ola\Desktop\dumb\dumb\parallax" />
       <recent name="C:\Users\Ola\Desktop\dumb\dumb\Sources\Models" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Ola\Desktop\dumb\dumb\Sources\Components" />
-      <recent name="C:\Users\tomas\Desktop\dumb" />
+      <recent name="C:\Users\Ola\Desktop\dumb\dumb\Stylesheets" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Start">
@@ -417,7 +436,7 @@
     <configuration default="false" name="Start" type="js.build_tools.npm" factoryName="npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="start" />
-      <node-interpreter value="$PROJECT_DIR$/../../nodejs/nodejs/node" />
+      <node-interpreter value="$PROJECT_DIR$/../../nodejs/node" />
       <envs />
       <method />
     </configuration>
@@ -452,31 +471,66 @@
       <workItem from="1498339723201" duration="8668000" />
       <workItem from="1498375384990" duration="18958000" />
       <workItem from="1498405635559" duration="5592000" />
-      <workItem from="1498415216476" duration="12318000" />
-      <workItem from="1498428703220" duration="4492000" />
-      <workItem from="1498457987070" duration="3127000" />
-      <workItem from="1498466456741" duration="3527000" />
+      <workItem from="1498415216476" duration="13823000" />
+      <workItem from="1498466227228" duration="4601000" />
     </task>
+    <task id="LOCAL-00001" summary="sort, filter, training, delete user">
+      <created>1498428453732</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1498428453732</updated>
+    </task>
+    <task id="LOCAL-00002" summary="delete trainings">
+      <created>1498429307729</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1498429307729</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add admin users list">
+      <created>1498467938926</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1498467938926</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add admin users list sorting and filtering">
+      <created>1498468499874</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1498468499874</updated>
+    </task>
+    <task id="LOCAL-00005" summary="poprawa widoków">
+      <created>1498471539868</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1498471539868</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="186697000" />
+    <option name="totallyTimeSpent" value="181961000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="1358" y="76" width="1936" height="1096" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16354166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928064" sideWeight="0.49791667" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16354166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4027484" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.019250253" sideWeight="0.50208336" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.019250253" sideWeight="0.49791667" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40324214" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24947916" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32928064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -488,12 +542,34 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="sort, filter, training, delete user" />
-    <option name="LAST_COMMIT_MESSAGE" value="sort, filter, training, delete user" />
+    <MESSAGE value="delete trainings" />
+    <MESSAGE value="add admin users list" />
+    <MESSAGE value="add admin users list sorting and filtering" />
+    <MESSAGE value="poprawa widoków" />
+    <option name="LAST_COMMIT_MESSAGE" value="poprawa widoków" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -590,6 +666,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#25#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -618,6 +697,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="307">
           <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -695,6 +775,14 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/Components/SignUpDialogPresentation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Sources/Components/Parallax.js" />
     <entry file="file://$PROJECT_DIR$/Sources/Models/specie.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -707,50 +795,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="113" lean-forward="false" selection-start-line="10" selection-start-column="113" selection-end-line="10" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/Components/MenuRepresentation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/Components/AddTrainingAdminPresentation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="65" lean-forward="false" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stylesheets/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="161" column="0" lean-forward="true" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/Components/FilterSearchPanelPresentation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" column="40" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/Components/AppPresentation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="37" column="107" lean-forward="false" selection-start-line="37" selection-start-column="94" selection-end-line="37" selection-end-column="107" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/pokemon_images/c7e17a39cbc6081fb0a66e788d2d48a9.jpeg">
-      <provider selected="true" editor-type-id="images">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Sources/Models/training.js">
@@ -761,104 +807,146 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/Components/AdminTrainingsPresentation.js">
+    <entry file="file://$PROJECT_DIR$/Sources/Components/FilterSearchPanelPresentation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="68" column="41" lean-forward="false" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="41" />
-          <folding />
+        <state relative-caret-position="391">
+          <caret line="29" column="40" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Actions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-160">
-          <caret line="179" column="12" lean-forward="false" selection-start-line="179" selection-start-column="12" selection-end-line="179" selection-end-column="12" />
+        <state relative-caret-position="476">
+          <caret line="134" column="20" lean-forward="false" selection-start-line="134" selection-start-column="20" selection-end-line="134" selection-end-column="20" />
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
-            <element signature="e#1006#1045#0" expanded="false" />
-            <element signature="e#1089#1128#0" expanded="false" />
-            <element signature="e#1265#1308#0" expanded="false" />
-            <element signature="e#1348#1408#0" expanded="false" />
-            <element signature="e#1551#1611#0" expanded="false" />
-            <element signature="e#1649#1704#0" expanded="false" />
-            <element signature="e#1751#1826#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Reducers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="312" column="20" lean-forward="false" selection-start-line="312" selection-start-column="20" selection-end-line="312" selection-end-column="33" />
-          <folding>
-            <element signature="n#!!block;n#sortPokemons#0" expanded="false" />
-            <element signature="e#3658#3713#0" expanded="false" />
-            <element signature="e#4919#5059#0" expanded="false" />
-            <element signature="e#5135#5270#0" expanded="false" />
-            <element signature="e#5356#5601#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-585">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="e#44#74#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="false" />
+            <element signature="e#1021#1060#0" expanded="false" />
+            <element signature="e#1104#1143#0" expanded="false" />
+            <element signature="e#1280#1323#0" expanded="false" />
+            <element signature="e#1363#1423#0" expanded="false" />
+            <element signature="e#1464#1526#0" expanded="false" />
+            <element signature="e#1566#1626#0" expanded="false" />
+            <element signature="e#1664#1719#0" expanded="false" />
+            <element signature="e#1766#1841#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ActionConstants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="41" column="37" lean-forward="false" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
+        <state relative-caret-position="340">
+          <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="26" column="22" lean-forward="false" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+          <folding>
+            <element signature="e#44#74#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/Components/MenuRepresentation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="55" column="75" lean-forward="false" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="75" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Sources/Components/Containers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="205" column="43" lean-forward="false" selection-start-line="205" selection-start-column="43" selection-end-line="205" selection-end-column="43" />
+        <state relative-caret-position="204">
+          <caret line="186" column="28" lean-forward="true" selection-start-line="186" selection-start-column="28" selection-end-line="186" selection-end-column="28" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/Components/SignUpDialogPresentation.js">
+    <entry file="file://$PROJECT_DIR$/Reducers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="459">
+          <caret line="302" column="43" lean-forward="true" selection-start-line="302" selection-start-column="43" selection-end-line="302" selection-end-column="43" />
+          <folding>
+            <element signature="e#4195#4250#0" expanded="false" />
+            <element signature="e#5456#5596#0" expanded="false" />
+            <element signature="e#5672#5807#0" expanded="false" />
+            <element signature="e#5893#6138#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/Components/AppPresentation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="29" column="24" lean-forward="false" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="109" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/Components/AdminUsersPresentation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="31" column="41" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stylesheets/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="170" column="0" lean-forward="true" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Sources/Components/AddPokemonAdminPresentation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        <state relative-caret-position="102">
+          <caret line="6" column="12" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/Components/AddTrainingAdminPresentation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/Components/AdminTrainingsPresentation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/Components/AdminPokemonPresentation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="48" column="18" lean-forward="true" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Sources/admin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="124" column="25" lean-forward="false" selection-start-line="124" selection-start-column="25" selection-end-line="124" selection-end-column="25" />
+        <state relative-caret-position="328">
+          <caret line="122" column="85" lean-forward="false" selection-start-line="122" selection-start-column="85" selection-end-line="122" selection-end-column="85" />
           <folding>
-            <marker date="1498468133947" expanded="true" signature="3681:4480" ph="{...}" />
+            <element signature="e#1050#2675#0" expanded="false" />
+            <element signature="e#3220#3534#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/Components/AdminPokemonPresentation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
