@@ -90,6 +90,24 @@ function sortPokemons(value, array) {
 
 }
 
+function sortUsers(value, array) {
+    console.log(value);
+    switch (value) {
+        case "Name Up":
+            return array.sort(function (a, b) {
+                if (a.username < b.username) return -1;
+                if (a.username > b.username) return 1;
+                return 0;
+            });
+
+        case "Name Down":
+            return array.sort(function (a, b) {
+                if (a.username < b.username) return 1;
+                if (a.username > b.username) return -1;
+                return 0;
+            });
+}}
+
 function removeByKey(array, params){
     array.some(function(item, index) {
         if(array[index]["_id"] === params){
@@ -244,7 +262,9 @@ export const reducers = (state = {}, action = { type: null }) =>{
             return Object.assign({}, state, {
                 search_for: action.search_for,
                 filtered_pokemons: state.pokemons.filter(row => row.name.toLowerCase().includes(action.search_for.toString().toLowerCase())),
-                filtered_trainings: state.trainings.filter(row => row.name.toLowerCase().includes(action.search_for.toString().toLowerCase()))
+                filtered_trainings: state.trainings.filter(row => row.name.toLowerCase().includes(action.search_for.toString().toLowerCase())),
+                filtered_users: state.users.filter(row => row.username.toLowerCase().includes(action.search_for.toString().toLowerCase()))
+
             });
 
         case c.POKEMON_ADMIN:
@@ -275,7 +295,8 @@ export const reducers = (state = {}, action = { type: null }) =>{
             return Object.assign({}, state,
                 {
                     filtered_pokemons: sortPokemons(action.sort_by, state.filtered_pokemons.filter(p => 1 === 1)),
-                    filtered_trainings : sortPokemons(action.sort_by, state.filtered_trainings.filter(p => 1 === 1))
+                    filtered_trainings : sortPokemons(action.sort_by, state.filtered_trainings.filter(p => 1 === 1)),
+                    filtered_users : sortUsers(action.sort_by, state.filtered_users.filter(p => 1 === 1))
                 });
 
         case c.SHOW_ADD_POKEMON_ADMIN_PANEL:

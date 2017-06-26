@@ -7319,6 +7319,25 @@ function sortPokemons(value, array) {
     }
 }
 
+function sortUsers(value, array) {
+    console.log(value);
+    switch (value) {
+        case "Name Up":
+            return array.sort(function (a, b) {
+                if (a.username < b.username) return -1;
+                if (a.username > b.username) return 1;
+                return 0;
+            });
+
+        case "Name Down":
+            return array.sort(function (a, b) {
+                if (a.username < b.username) return 1;
+                if (a.username > b.username) return -1;
+                return 0;
+            });
+    }
+}
+
 function removeByKey(array, params) {
     array.some(function (item, index) {
         if (array[index]["_id"] === params) {
@@ -7466,7 +7485,11 @@ var reducers = exports.reducers = function reducers() {
                 }),
                 filtered_trainings: state.trainings.filter(function (row) {
                     return row.name.toLowerCase().includes(action.search_for.toString().toLowerCase());
+                }),
+                filtered_users: state.users.filter(function (row) {
+                    return row.username.toLowerCase().includes(action.search_for.toString().toLowerCase());
                 })
+
             });
 
         case _ActionConstants2.default.POKEMON_ADMIN:
@@ -7496,6 +7519,9 @@ var reducers = exports.reducers = function reducers() {
                     return 1 === 1;
                 })),
                 filtered_trainings: sortPokemons(action.sort_by, state.filtered_trainings.filter(function (p) {
+                    return 1 === 1;
+                })),
+                filtered_users: sortUsers(action.sort_by, state.filtered_users.filter(function (p) {
                     return 1 === 1;
                 }))
             });
