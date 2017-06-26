@@ -18,6 +18,15 @@ const AdminPokemonPresentation = ( {pokemons, search_for, filtered_pokemons, del
 
         <FilterPanel/>
 
+        <div className="row" style={{margin_bottom: 20}}>
+            <div className="col-xs-5 col-md-4">
+                <h4>Name</h4>
+            </div>
+            <div className="col-xs-5 col-md-4">
+                <h4>Photo</h4>
+            </div>
+        </div>
+
         {filtered_pokemons.map(function(row, i){
             return (
                 <div className="row" style={{margin_bottom: 20}}>
@@ -29,7 +38,7 @@ const AdminPokemonPresentation = ( {pokemons, search_for, filtered_pokemons, del
                     </div>
 
                     <div className="col-xs-2 col-md-2">
-                        <button className="btn btn-primary btn-block" id={row._id} onClick={deleteAdminPokemon}>DELETE</button>
+                        <button className="btn btn-danger" id={row._id} onClick={deleteAdminPokemon}>DELETE</button>
                     </div>
                 </div>
             )

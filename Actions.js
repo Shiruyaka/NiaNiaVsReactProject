@@ -134,6 +134,15 @@ export const getTrainingsRequestAdmin = (e) => dispatch => {
     )
 };
 
+export const onUserAdminClick = () => dispatch => {
+  fetchThenDispatch(
+      dispatch,
+      'admin/users',
+      'GET',
+      null
+  )
+};
+
 export const showAddTrainingAdmin = () =>
     ({
         type: c.SHOW_ADD_TRAINING_ADMIN_PANEL
@@ -189,6 +198,16 @@ export const deleteAdminPokemon = (e) => dispatch => {
       JSON.stringify({})
   );
 };
+
+export const deleteAdminTraining = (e) => dispatch => {
+    return fetchThenDispatch(
+        dispatch,
+        "admin/edit_training/"+e.target.value,
+        "DELETE",
+        JSON.stringify({})
+    );
+};
+
 
 export const onChangeSearchInput = (e) => ({
     search_for : e.target.value,

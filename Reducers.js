@@ -90,6 +90,24 @@ function sortPokemons(value, array) {
 
 }
 
+function sortUsers(value, array) {
+    console.log(value);
+    switch (value) {
+        case "Name Up":
+            return array.sort(function (a, b) {
+                if (a.username < b.username) return -1;
+                if (a.username > b.username) return 1;
+                return 0;
+            });
+
+        case "Name Down":
+            return array.sort(function (a, b) {
+                if (a.username < b.username) return 1;
+                if (a.username > b.username) return -1;
+                return 0;
+            });
+}}
+
 function removeByKey(array, params){
     array.some(function(item, index) {
         if(array[index]["_id"] === params){
@@ -235,16 +253,18 @@ export const reducers = (state = {}, action = { type: null }) =>{
                     pokemons : [],
                     filtered_pokemons : [],
                     trainings : [],
-                    filtered_trainings : []
-
-
+                    filtered_trainings : [],
+                    users: [],
+                    filtered_users: [],
                 });
 
         case c.SET_SEARCH_VALUE:
             return Object.assign({}, state, {
                 search_for: action.search_for,
                 filtered_pokemons: state.pokemons.filter(row => row.name.toLowerCase().includes(action.search_for.toString().toLowerCase())),
-                filtered_trainings: state.trainings.filter(row => row.name.toLowerCase().includes(action.search_for.toString().toLowerCase()))
+                filtered_trainings: state.trainings.filter(row => row.name.toLowerCase().includes(action.search_for.toString().toLowerCase())),
+                filtered_users: state.users.filter(row => row.username.toLowerCase().includes(action.search_for.toString().toLowerCase()))
+
             });
 
         case c.POKEMON_ADMIN:
@@ -263,11 +283,20 @@ export const reducers = (state = {}, action = { type: null }) =>{
                     activePage: "TrainingAdmin"
                 });
 
+        case c.USERS_ADMIN:
+            return Object.assign({}, state, {
+                users: sortPokemons("Name Up", action.users),
+                filtered_users: action.users,
+                activePage: "UserAdmin"
+            });
+
+
         case c.SET_SORT_VALUE:
             return Object.assign({}, state,
                 {
                     filtered_pokemons: sortPokemons(action.sort_by, state.filtered_pokemons.filter(p => 1 === 1)),
-                    filtered_trainings : sortPokemons(action.sort_by, state.filtered_trainings.filter(p => 1 === 1))
+                    filtered_trainings : sortPokemons(action.sort_by, state.filtered_trainings.filter(p => 1 === 1)),
+                    filtered_users : sortUsers(action.sort_by, state.filtered_users.filter(p => 1 === 1))
                 });
 
         case c.SHOW_ADD_POKEMON_ADMIN_PANEL:
@@ -289,10 +318,19 @@ export const reducers = (state = {}, action = { type: null }) =>{
                 });
 
         case c.ON_ADMIN_DELETE_POKEMON_SUCCESS:
+<<<<<<< HEAD
 
+=======
+        return Object.assign({}, state,
+            {
+                filtered_pokemons : removeByKey(state.filtered_pokemons.filter(p => 1 === 1), action.deleted_id)
+            });
+
+        case c.ON_ADMIN_DELETE_TRAINING:
+>>>>>>> origin/master
             return Object.assign({}, state,
                 {
-                    filtered_pokemons : removeByKey(state.filtered_pokemons.filter(p => 1 === 1), action.deleted_id)
+                    filtered_trainings : removeByKey(state.filtered_trainings.filter(p => 1 === 1), action.deleted_id)
                 });
 
         case c.ON_LOAD_PICTURE:
@@ -302,6 +340,7 @@ export const reducers = (state = {}, action = { type: null }) =>{
                     pictureToSend: action.pictureToSend
                 });
 
+<<<<<<< HEAD
         case c.SAVE_NEW_POKEMON_NAME:
             return Object.assign({}, state,
                 {
@@ -314,6 +353,9 @@ export const reducers = (state = {}, action = { type: null }) =>{
                     pictureToSend: null,
                     newPokemonName: ""
                 });
+=======
+
+>>>>>>> origin/master
         default:
             return state;
     }

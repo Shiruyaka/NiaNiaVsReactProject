@@ -10,11 +10,19 @@ import AddPokemonAdminPresentation from "./AddPokemonAdminPresentation"
 import AdminTrainingsPresentation from "./AdminTrainingsPresentation"
 import FilterSearchPanelPresentation from "./FilterSearchPanelPresentation"
 import AddTrainingAdminPresentation from "./AddTrainingAdminPresentation"
+<<<<<<< HEAD
 import { showLoginForm, hideLoginForm, showSignUpDialog, hideSignUpDialog, saveUsername, saveFirstname,
          saveLastname, savePasswd, saveReenteredPasswd, sendSignUpRequest, loginToServer, onHomeClick, onPokemonsClick,
          onUsersClick, onTrainingsClick, getPokemonsRequestAdmin, showAddPokemonAdmin, sendAddPokemonRequest,
          onChangeSearchInput, onChangeSortInput, getTrainingsRequestAdmin, showAddTrainingAdmin, deleteAdminPokemon,
          onPictureLoad, saveNewPokemonName
+=======
+import AdminUsersPresentation from "./AdminUsersPresentation"
+import { showLoginForm, hideLoginForm, showSignUpDialog, hideSignUpDialog, createAccount, saveUsername,
+         saveFirstname, saveLastname, savePasswd, saveReenteredPasswd, sendSignUpRequest, loginToServer,
+         onHomeClick, onPokemonsClick,  onUsersClick, onTrainingsClick, getPokemonsRequestAdmin, showAddPokemonAdmin,
+         sendAddPokemonRequest, onChangeSearchInput, onChangeSortInput, getTrainingsRequestAdmin, showAddTrainingAdmin, deleteAdminPokemon, deleteAdminTraining, onUserAdminClick
+>>>>>>> origin/master
 } from "../../Actions"
 
 
@@ -107,7 +115,10 @@ export const Menu = connect(
             },
             onAddAdminTrainingClick(e){
               dispatch(showAddTrainingAdmin())
-            }
+            },
+            onUserAdminClick(e){
+                dispatch(onUserAdminClick())
+            },
         })
 )(MenuPresentation);
 
@@ -191,8 +202,21 @@ export const AdminTrainings = connect(
         }),
     dispatch =>
         ({
+            deleteAdminTraining(e){
+                dispatch(deleteAdminTraining(e))
+            },
         })
 )(AdminTrainingsPresentation);
+
+export const AdminUsers = connect(
+    ({filtered_users})=>
+        ({
+            filtered_users: filtered_users
+        }),
+    dispatch =>
+        ({
+        })
+)(AdminUsersPresentation);
 
 export const AddPokemonAdmin = connect(
     ({pictureToSend, newPokemonName, pokemon_added}) =>

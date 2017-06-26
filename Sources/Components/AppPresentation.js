@@ -1,7 +1,7 @@
 import React from "react";
 import Parallax from 'react-simple-parallax';
 
-import { Header, SignUpDialog, Menu, AdminPokemons, AddPokemonAdmin , AdminTrainings, AddTrainingAdmin} from "./Containers"
+import { Header, SignUpDialog, Menu, AdminPokemons, AddPokemonAdmin , AdminTrainings, AddTrainingAdmin, AdminUsers} from "./Containers"
 
 import { connect } from "react-redux"
 
@@ -37,6 +37,7 @@ const AppPresentation = ( {user, activePage = "", logged = false, wrongLoginOrPa
                             {(user !== undefined && user.role === "admin" &&  activePage === "AddPokemonAdmin") ? <AddPokemonAdmin/>: null }
                             {(user !== undefined && user.role === "admin" &&  activePage === "TrainingAdmin") ? <AdminTrainings/>: null }
                             {(user !== undefined && user.role === "admin" &&  activePage === "AddTrainingAdmin") ? <AddTrainingAdmin/>: null }
+                            {(user !== undefined && user.role === "admin" && activePage === "UserAdmin") ? <AdminUsers/> : null}
 
                         </div>
 
