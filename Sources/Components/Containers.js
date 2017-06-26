@@ -10,10 +10,11 @@ import AddPokemonAdminPresentation from "./AddPokemonAdminPresentation"
 import AdminTrainingsPresentation from "./AdminTrainingsPresentation"
 import FilterSearchPanelPresentation from "./FilterSearchPanelPresentation"
 import AddTrainingAdminPresentation from "./AddTrainingAdminPresentation"
+import AdminUsersPresentation from "./AdminUsersPresentation"
 import { showLoginForm, hideLoginForm, showSignUpDialog, hideSignUpDialog, createAccount, saveUsername,
          saveFirstname, saveLastname, savePasswd, saveReenteredPasswd, sendSignUpRequest, loginToServer,
          onHomeClick, onPokemonsClick,  onUsersClick, onTrainingsClick, getPokemonsRequestAdmin, showAddPokemonAdmin,
-         sendAddPokemonRequest, onChangeSearchInput, onChangeSortInput, getTrainingsRequestAdmin, showAddTrainingAdmin, deleteAdminPokemon, deleteAdminTraining
+         sendAddPokemonRequest, onChangeSearchInput, onChangeSortInput, getTrainingsRequestAdmin, showAddTrainingAdmin, deleteAdminPokemon, deleteAdminTraining, onUserAdminClick
 } from "../../Actions"
 
 
@@ -106,7 +107,10 @@ export const Menu = connect(
             },
             onAddAdminTrainingClick(e){
               dispatch(showAddTrainingAdmin())
-            }
+            },
+            onUserAdminClick(e){
+                dispatch(onUserAdminClick())
+            },
         })
 )(MenuPresentation);
 
@@ -191,6 +195,16 @@ export const AdminTrainings = connect(
             },
         })
 )(AdminTrainingsPresentation);
+
+export const AdminUsers = connect(
+    ({filtered_users})=>
+        ({
+            filtered_users: filtered_users
+        }),
+    dispatch =>
+        ({
+        })
+)(AdminUsersPresentation);
 
 export const AddPokemonAdmin = connect(
     ({}) =>

@@ -129,6 +129,15 @@ export const getTrainingsRequestAdmin = (e) => dispatch => {
     )
 };
 
+export const onUserAdminClick = () => dispatch => {
+  fetchThenDispatch(
+      dispatch,
+      'admin/users',
+      'GET',
+      null
+  )
+};
+
 export const showAddTrainingAdmin = () =>
     ({
         type: c.SHOW_ADD_TRAINING_ADMIN_PANEL

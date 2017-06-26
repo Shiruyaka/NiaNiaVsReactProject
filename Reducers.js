@@ -235,9 +235,9 @@ export const reducers = (state = {}, action = { type: null }) =>{
                     pokemons : [],
                     filtered_pokemons : [],
                     trainings : [],
-                    filtered_trainings : []
-
-
+                    filtered_trainings : [],
+                    users: [],
+                    filtered_users: [],
                 });
 
         case c.SET_SEARCH_VALUE:
@@ -262,6 +262,14 @@ export const reducers = (state = {}, action = { type: null }) =>{
                     filtered_trainings: action.trainings,
                     activePage: "TrainingAdmin"
                 });
+
+        case c.USERS_ADMIN:
+            return Object.assign({}, state, {
+                users: sortPokemons("Name Up", action.users),
+                filtered_users: action.users,
+                activePage: "UserAdmin"
+            });
+
 
         case c.SET_SORT_VALUE:
             return Object.assign({}, state,

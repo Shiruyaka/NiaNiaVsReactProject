@@ -24,7 +24,7 @@ let app = express();
 app.set("specie", specie);
 app.set("training", training);
 app.set("pokemon", pokemons);
-
+app.set('user', user);
 
 let cookieParser = require("cookie-parser");
 let session = require("express-session");

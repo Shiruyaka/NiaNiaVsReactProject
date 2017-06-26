@@ -3,7 +3,7 @@ import { SignUpDialog} from "./Containers"
 
 const MenuPresentation = ({home_class, pokemon_class, users_class, training_class,
     onHomeClick = f => f, onPokemonsClick = f => f, onUsersClick = f => f, onTrainingsClick = f =>f,
-    onPokemonAdminClick = f => f, onAddPokemonClick = f => f, onTrainingAdminClick = f => f, onAddAdminTrainingClick = f => f
+    onPokemonAdminClick = f => f, onAddPokemonClick = f => f, onTrainingAdminClick = f => f, onAddAdminTrainingClick = f => f, onUserAdminClick = f => f
 }) => {
     return (
 
@@ -53,11 +53,11 @@ const MenuPresentation = ({home_class, pokemon_class, users_class, training_clas
 
             {(users_class === true) ?
                 <div className="panel collapsed">
-                    <p>Users list</p>
+                    <button className="accordion" onClick={onUserAdminClick}>User List</button>
                 </div>
                 :
                 <div className="panel">
-                    <p>Users list</p>
+                    <button className="accordion" onClick={onUserAdminClick}>User List</button>
                 </div>
             }
 

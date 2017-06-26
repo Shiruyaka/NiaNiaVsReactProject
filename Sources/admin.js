@@ -269,14 +269,14 @@ router.get("/new_training", function (req, res) {
 });
 
 router.get("/users", function (req, res) {
-   navibar["page"] = req.url;
-
-    app.users.find({}, function (err, users) {
+    const user = req.app.get("user");
+    user.find({role:"user"}, function (err, users) {
        if(err){
            console.log(err);
        }else{
-           navibar["users"] = users;
-           res.render("admin_user", navibar);
+           console.log(users);
+           res.json({ type: action_constans.USERS_ADMIN,
+               users: users});
        }
     });
 
