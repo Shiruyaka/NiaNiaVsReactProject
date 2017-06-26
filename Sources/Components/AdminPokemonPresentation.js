@@ -13,26 +13,7 @@ let pokemonsHTML = [];
 
 
 const AdminPokemonPresentation = ( {pokemons, search_for, filtered_pokemons, deleteAdminPokemon = f => f} ) =>
-    /*<table>
-     <tr>
-     <th>Name</th>
-     <th>Picture</th>
-     <th></th>
-     </tr>
 
-     {pokemons.map(function (row, i) {
-     return (
-     <tr>
-     <td>{row.name}</td>
-     <td><img src={row.photo} /></td>
-     <td><input type="button" value="DELETE"/></td>
-     </tr>
-     )
-     })}
-
-     </table>
-
-     */
     <div className="container" style={{padding: 10}}>
 
         <FilterPanel/>
@@ -44,7 +25,7 @@ const AdminPokemonPresentation = ( {pokemons, search_for, filtered_pokemons, del
                         <h5>{row.name}</h5>
                     </div>
                     <div className="col-xs-5 col-md-4">
-                        <img src={row.photo} />
+                        <img src={"/admin/" + row.photo} height="100" width="100" />
                     </div>
 
                     <div className="col-xs-2 col-md-2">

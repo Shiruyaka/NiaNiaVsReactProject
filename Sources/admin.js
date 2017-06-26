@@ -121,7 +121,7 @@ router.use(express.static(path.resolve(__dirname, "pokemon_images")));
 
 router.post("/add_pokemon", upload.single('file'), function (req, res) {
     const file = path.resolve(req.file.path + '.' + req.file.mimetype.split('/')[1]);
-    console.log("CHUJ");
+    const specie = req.app.get("specie");
    fs.rename(req.file.path, (file), function (err) {
        if(err){
            console.log(err);
@@ -137,7 +137,10 @@ router.post("/add_pokemon", upload.single('file'), function (req, res) {
                      console.log(err);
                  }else{
                      req.flash("info", "New spiece has been added");
-                     res.redirect("/admin/pokemons");
+                     res.json({
+                         type: action_constans.NEW_POKEMON_ADDED
+                     });
+
                  }
              });
        }

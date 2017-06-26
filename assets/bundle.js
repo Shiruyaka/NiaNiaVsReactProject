@@ -2672,7 +2672,7 @@ var SignUpDialog = exports.SignUpDialog = (0, _reactRedux.connect)(function (_re
             dispatch((0, _Actions.hideSignUpDialog)());
         },
         createNewAccount: function createNewAccount(e) {
-            dispatch((0, _Actions.createAccount)(e));
+            dispatch(createAccount(e));
         },
         onChangeUsername: function onChangeUsername(e) {
             dispatch((0, _Actions.saveUsername)(e));
@@ -2712,7 +2712,8 @@ var FilterPanel = exports.FilterPanel = (0, _reactRedux.connect)(function (_ref7
 var AdminPokemons = exports.AdminPokemons = (0, _reactRedux.connect)(function (_ref8) {
     var pokemons = _ref8.pokemons,
         search_for = _ref8.search_for,
-        filtered_pokemons = _ref8.filtered_pokemons;
+        filtered_pokemons = _ref8.filtered_pokemons,
+        onPictureLoad = _ref8.onPictureLoad;
     return {
         pokemons: pokemons,
         search_for: search_for,
@@ -2722,6 +2723,9 @@ var AdminPokemons = exports.AdminPokemons = (0, _reactRedux.connect)(function (_
     return {
         deleteAdminPokemon: function deleteAdminPokemon(e) {
             dispatch((0, _Actions.deleteAdminPokemon)(e));
+        },
+        loadPicture: function loadPicture(e) {
+            dispatch((0, _Actions.onPictureLoad)(e));
         }
     };
 })(_AdminPokemonPresentation2.default);
@@ -2736,13 +2740,20 @@ var AdminTrainings = exports.AdminTrainings = (0, _reactRedux.connect)(function 
 })(_AdminTrainingsPresentation2.default);
 
 var AddPokemonAdmin = exports.AddPokemonAdmin = (0, _reactRedux.connect)(function (_ref10) {
-    _objectDestructuringEmpty(_ref10);
-
-    return {};
+    var pictureToSend = _ref10.pictureToSend,
+        newPokemonName = _ref10.newPokemonName,
+        pokemon_added = _ref10.pokemon_added;
+    return { pictureToSend: pictureToSend, newPokemonName: newPokemonName, pokemon_added: pokemon_added };
 }, function (dispatch) {
     return {
-        onSendNewPokemon: function onSendNewPokemon(e) {
-            dispatch((0, _Actions.sendAddPokemonRequest)(e));
+        onSendNewPokemon: function onSendNewPokemon(file, name) {
+            dispatch((0, _Actions.sendAddPokemonRequest)(file, name));
+        },
+        onPictureLoad: function onPictureLoad(e) {
+            dispatch((0, _Actions.onPictureLoad)(e));
+        },
+        onNameChange: function onNameChange(e) {
+            dispatch((0, _Actions.saveNewPokemonName)(e));
         }
     };
 })(_AddPokemonAdminPresentation2.default);
@@ -7483,17 +7494,33 @@ var reducers = exports.reducers = function reducers() {
             });
 
         case _ActionConstants2.default.ON_ADMIN_DELETE_POKEMON_FAILED:
-            alert("You cant remove specie if there are pokemons of this specie");
+
             return Object.assign({}, state, {});
 
         case _ActionConstants2.default.ON_ADMIN_DELETE_POKEMON_SUCCESS:
-            alert("Specie deleted");
+
             return Object.assign({}, state, {
                 filtered_pokemons: removeByKey(state.filtered_pokemons.filter(function (p) {
                     return 1 === 1;
                 }), action.deleted_id)
             });
 
+        case _ActionConstants2.default.ON_LOAD_PICTURE:
+            console.log(action);
+            return Object.assign({}, state, {
+                pictureToSend: action.pictureToSend
+            });
+
+        case _ActionConstants2.default.SAVE_NEW_POKEMON_NAME:
+            return Object.assign({}, state, {
+                newPokemonName: action.newPokemonName
+            });
+        case _ActionConstants2.default.NEW_POKEMON_ADDED:
+            return Object.assign({}, state, {
+                pokemon_added: true,
+                pictureToSend: null,
+                newPokemonName: ""
+            });
         default:
             return state;
     }
@@ -7526,6 +7553,7 @@ var constants = {
     SAVE_LASTNAME: "SAVE_LASTNAME",
     SAVE_PASSWD: "SAVE_PASSWD",
     SAVE_REENTERED_PASSWD: "SAVE_REENTERED_PASSWD",
+    SAVE_NEW_POKEMON_NAME: "SAVE_NEW_POKEMON_NAME",
 
     PASSWORDS_NOT_THE_SAME: "PASSWORDS_NOT_THE_SAME",
     USERNAME_TAKEN: "USERNAME_TAKEN",
@@ -7547,9 +7575,11 @@ var constants = {
     ON_ADMIN_DELETE_POKEMON_SUCCESS: "ON_ADMIN_DELETE_POKEMON_SUCCESS",
     ON_ADMIN_DELETE_POKEMON_FAILED: "ON_ADMIN_DELETE_POKEMON_FAILED",
 
+    ON_LOAD_PICTURE: "ON_LOAD_PICTURE",
     SET_SEARCH_VALUE: "SET_SEARCH_VALUE",
-    SET_SORT_VALUE: "SET_SORT_VALUE"
+    SET_SORT_VALUE: "SET_SORT_VALUE",
 
+    NEW_POKEMON_ADDED: "NEW_POKEMON_ADDED"
 };
 
 exports.default = constants;
@@ -7564,7 +7594,7 @@ exports.default = constants;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.onChangeSortInput = exports.onChangeSearchInput = exports.deleteAdminPokemon = exports.sendAddPokemonRequest = exports.showAddPokemonAdmin = exports.onPokemonsClick = exports.onUsersClick = exports.onTrainingsClick = exports.onHomeClick = exports.showAddTrainingAdmin = exports.getTrainingsRequestAdmin = exports.getPokemonsRequestAdmin = exports.sendSignUpRequest = exports.loginToServer = exports.saveReenteredPasswd = exports.savePasswd = exports.saveLastname = exports.saveFirstname = exports.saveUsername = exports.hideSignUpDialog = exports.showSignUpDialog = exports.hideLoginForm = exports.showLoginForm = undefined;
+exports.onPictureLoad = exports.onChangeSortInput = exports.onChangeSearchInput = exports.deleteAdminPokemon = exports.sendAddPokemonRequest = exports.showAddPokemonAdmin = exports.onPokemonsClick = exports.onUsersClick = exports.onTrainingsClick = exports.onHomeClick = exports.showAddTrainingAdmin = exports.getTrainingsRequestAdmin = exports.getPokemonsRequestAdmin = exports.sendSignUpRequest = exports.loginToServer = exports.saveNewPokemonName = exports.saveReenteredPasswd = exports.savePasswd = exports.saveLastname = exports.saveFirstname = exports.saveUsername = exports.hideSignUpDialog = exports.showSignUpDialog = exports.hideLoginForm = exports.showLoginForm = undefined;
 
 var _ActionConstants = __webpack_require__(61);
 
@@ -7599,13 +7629,14 @@ var fetchThenDispatch = function fetchThenDispatch(dispatch, url, method, body) 
 };
 
 var fetchThenDispatchWithPicture = function fetchThenDispatchWithPicture(dispatch, url, method, name, file) {
-    var formData = new FormData();
-    formData.append("file", file);
-    formData.append("name", body.name);
+    var fData = new FormData();
+    fData.append("file", file);
+    fData.append("name", name);
+
     return (0, _isomorphicFetch2.default)(url, {
         method: method,
         credentials: 'same-origin',
-        body: formData
+        body: fData
     }).then(parseResponse).then(dispatch).catch(logError);
 };
 
@@ -7665,6 +7696,13 @@ var saveReenteredPasswd = exports.saveReenteredPasswd = function saveReenteredPa
     return {
         reentered_passwd: e.target.value,
         type: _ActionConstants2.default.SAVE_REENTERED_PASSWD
+    };
+};
+
+var saveNewPokemonName = exports.saveNewPokemonName = function saveNewPokemonName(e) {
+    return {
+        newPokemonName: e.target.value,
+        type: _ActionConstants2.default.SAVE_NEW_POKEMON_NAME
     };
 };
 
@@ -7743,13 +7781,12 @@ var showAddPokemonAdmin = exports.showAddPokemonAdmin = function showAddPokemonA
     };
 };
 
-var sendAddPokemonRequest = exports.sendAddPokemonRequest = function sendAddPokemonRequest(e) {
+var sendAddPokemonRequest = exports.sendAddPokemonRequest = function sendAddPokemonRequest(file, name) {
     return function (dispatch) {
 
-        alert(e.target.elements.name.value);
-        alert(e.target.elements.file.value);
+        alert(name);
 
-        return fetchThenDispatchWithPicture(dispatch, "admin/add_pokemon", "POST", e.target.elements.name.value, e.target.elements.file.value);
+        return fetchThenDispatchWithPicture(dispatch, "admin/add_pokemon", "POST", name, file);
     };
 };
 
@@ -7773,6 +7810,13 @@ var onChangeSortInput = exports.onChangeSortInput = function onChangeSortInput(e
     return {
         sort_by: e.target.value,
         type: _ActionConstants2.default.SET_SORT_VALUE
+    };
+};
+
+var onPictureLoad = exports.onPictureLoad = function onPictureLoad(e) {
+    return {
+        type: _ActionConstants2.default.ON_LOAD_PICTURE,
+        pictureToSend: e.target.files[0]
     };
 };
 
@@ -11375,18 +11419,49 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function onChange(event) {
+    var reader = new FileReader();
+    alert("Changing some stuff");
+    reader.readAsText(event.target.files[0]);
+}
+
 var AddPokemonAdminPresentation = function AddPokemonAdminPresentation(_ref) {
-    var onSendNewPokemon = _ref.onSendNewPokemon;
+    var pokemon_added = _ref.pokemon_added,
+        newPokemonName = _ref.newPokemonName,
+        pictureToSend = _ref.pictureToSend,
+        _ref$onNameChange = _ref.onNameChange,
+        onNameChange = _ref$onNameChange === undefined ? function (f) {
+        return f;
+    } : _ref$onNameChange,
+        _ref$onSendNewPokemon = _ref.onSendNewPokemon,
+        onSendNewPokemon = _ref$onSendNewPokemon === undefined ? function (f) {
+        return f;
+    } : _ref$onSendNewPokemon,
+        _ref$onPictureLoad = _ref.onPictureLoad,
+        onPictureLoad = _ref$onPictureLoad === undefined ? function (f) {
+        return f;
+    } : _ref$onPictureLoad;
 
     return _react2.default.createElement(
         "div",
         { className: "container" },
+        pokemon_added ? _react2.default.createElement(
+            "p",
+            { className: "bg-success" },
+            " New pokemon have been uploaded"
+        ) : null,
         _react2.default.createElement(
-            "form",
-            { onSubmit: onSendNewPokemon },
-            _react2.default.createElement("input", { name: "name", type: "text", className: "form-control", placeholder: "Name", required: true, autoFocus: true }),
-            _react2.default.createElement("input", { type: "file", name: "file", id: "file", required: true, accept: "image/*" }),
-            _react2.default.createElement("input", { type: "submit", value: "Add", className: "btn btn-primary btn-block" })
+            "div",
+            { onSubmit: function onSubmit(e) {
+                    return onSendNewPokemon(pictureToSend, e);
+                } },
+            _react2.default.createElement("input", { name: "name", type: "text", className: "form-control", onChange: onNameChange, placeholder: "Name", required: true, autoFocus: true }),
+            _react2.default.createElement("input", { type: "file", name: "file", id: "file",
+                onChange: onPictureLoad,
+                required: true, accept: "image/*" }),
+            _react2.default.createElement("input", { type: "submit", value: "Add", onClick: function onClick() {
+                    return onSendNewPokemon(pictureToSend, newPokemonName);
+                }, className: "btn btn-primary btn-block" })
         )
     );
 };
@@ -11467,58 +11542,39 @@ var AdminPokemonPresentation = function AdminPokemonPresentation(_ref) {
         deleteAdminPokemon = _ref$deleteAdminPokem === undefined ? function (f) {
         return f;
     } : _ref$deleteAdminPokem;
-    return (
-        /*<table>
-         <tr>
-         <th>Name</th>
-         <th>Picture</th>
-         <th></th>
-         </tr>
-          {pokemons.map(function (row, i) {
-         return (
-         <tr>
-         <td>{row.name}</td>
-         <td><img src={row.photo} /></td>
-         <td><input type="button" value="DELETE"/></td>
-         </tr>
-         )
-         })}
-          </table>
-          */
-        _react2.default.createElement(
-            "div",
-            { className: "container", style: { padding: 10 } },
-            _react2.default.createElement(_Containers.FilterPanel, null),
-            filtered_pokemons.map(function (row, i) {
-                return _react2.default.createElement(
+    return _react2.default.createElement(
+        "div",
+        { className: "container", style: { padding: 10 } },
+        _react2.default.createElement(_Containers.FilterPanel, null),
+        filtered_pokemons.map(function (row, i) {
+            return _react2.default.createElement(
+                "div",
+                { className: "row", style: { margin_bottom: 20 } },
+                _react2.default.createElement(
                     "div",
-                    { className: "row", style: { margin_bottom: 20 } },
+                    { className: "col-xs-5 col-md-4" },
                     _react2.default.createElement(
-                        "div",
-                        { className: "col-xs-5 col-md-4" },
-                        _react2.default.createElement(
-                            "h5",
-                            null,
-                            row.name
-                        )
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "col-xs-5 col-md-4" },
-                        _react2.default.createElement("img", { src: row.photo })
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "col-xs-2 col-md-2" },
-                        _react2.default.createElement(
-                            "button",
-                            { className: "btn btn-primary btn-block", id: row._id, onClick: deleteAdminPokemon },
-                            "DELETE"
-                        )
+                        "h5",
+                        null,
+                        row.name
                     )
-                );
-            })
-        )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "col-xs-5 col-md-4" },
+                    _react2.default.createElement("img", { src: "/admin/" + row.photo, height: "100", width: "100" })
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "col-xs-2 col-md-2" },
+                    _react2.default.createElement(
+                        "button",
+                        { className: "btn btn-primary btn-block", id: row._id, onClick: deleteAdminPokemon },
+                        "DELETE"
+                    )
+                )
+            );
+        })
     );
 };
 
@@ -11699,7 +11755,7 @@ exports.default = AdminTrainingsPresentation;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+                value: true
 });
 
 var _react = __webpack_require__(7);
@@ -11717,72 +11773,72 @@ var _reactRedux = __webpack_require__(27);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AppPresentation = function AppPresentation(_ref) {
-    var user = _ref.user,
-        _ref$activePage = _ref.activePage,
-        activePage = _ref$activePage === undefined ? "" : _ref$activePage,
-        _ref$logged = _ref.logged,
-        logged = _ref$logged === undefined ? false : _ref$logged,
-        _ref$wrongLoginOrPass = _ref.wrongLoginOrPassword,
-        wrongLoginOrPassword = _ref$wrongLoginOrPass === undefined ? false : _ref$wrongLoginOrPass,
-        _ref$show_sign_up_dia = _ref.show_sign_up_dialog,
-        show_sign_up_dialog = _ref$show_sign_up_dia === undefined ? false : _ref$show_sign_up_dia,
-        _ref$accountCreated = _ref.accountCreated,
-        accountCreated = _ref$accountCreated === undefined ? false : _ref$accountCreated;
+                var user = _ref.user,
+                    _ref$activePage = _ref.activePage,
+                    activePage = _ref$activePage === undefined ? "" : _ref$activePage,
+                    _ref$logged = _ref.logged,
+                    logged = _ref$logged === undefined ? false : _ref$logged,
+                    _ref$wrongLoginOrPass = _ref.wrongLoginOrPassword,
+                    wrongLoginOrPassword = _ref$wrongLoginOrPass === undefined ? false : _ref$wrongLoginOrPass,
+                    _ref$show_sign_up_dia = _ref.show_sign_up_dialog,
+                    show_sign_up_dialog = _ref$show_sign_up_dia === undefined ? false : _ref$show_sign_up_dia,
+                    _ref$accountCreated = _ref.accountCreated,
+                    accountCreated = _ref$accountCreated === undefined ? false : _ref$accountCreated;
 
 
-    return _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement(
-            "main",
-            { className: "wrapper" },
-            _react2.default.createElement(
-                "section",
-                { className: "section parallax bg1" },
-                _react2.default.createElement(
-                    "h1",
-                    null,
-                    "POKEMON ACADEMY!"
-                )
-            ),
-            _react2.default.createElement("section", { className: "section static" }),
-            _react2.default.createElement(
-                "section",
-                { id: "main_part" },
-                _react2.default.createElement(_Containers.Header, null),
-                _react2.default.createElement(
-                    "div",
-                    { className: "row" },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "col-md-2 offset-lg-2 center-block" },
-                        " ",
-                        logged ? _react2.default.createElement(_Containers.Menu, null) : null,
-                        " "
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "col-md-8 col-lg-8 center-block " },
-                        show_sign_up_dialog ? _react2.default.createElement(_Containers.SignUpDialog, null) : null,
-                        accountCreated ? _react2.default.createElement(
-                            "p",
-                            { className: "bg-success" },
-                            "Account created, now you can log in"
-                        ) : null,
-                        wrongLoginOrPassword ? _react2.default.createElement(
-                            "p",
-                            { className: "bg-danger" },
-                            "Invalid username or login"
-                        ) : null,
-                        user !== undefined && user.role === "admin" && activePage === "PokemonAdmin" ? _react2.default.createElement(_Containers.AdminPokemons, null) : null,
-                        user !== undefined && user.role === "admin" && activePage === "AddPokemonAdmin" ? _react2.default.createElement(_Containers.AddPokemonAdmin, null) : null,
-                        user !== undefined && user.role === "admin" && activePage === "TrainingAdmin" ? _react2.default.createElement(_Containers.AdminTrainings, null) : null,
-                        user !== undefined && user.role === "admin" && activePage === "AddTrainingAdmin" ? _react2.default.createElement(_Containers.AddTrainingAdmin, null) : null
-                    )
-                )
-            )
-        )
-    );
+                return _react2.default.createElement(
+                                "div",
+                                null,
+                                _react2.default.createElement(
+                                                "main",
+                                                { className: "wrapper" },
+                                                _react2.default.createElement(
+                                                                "section",
+                                                                { className: "section parallax bg1" },
+                                                                _react2.default.createElement(
+                                                                                "h1",
+                                                                                null,
+                                                                                "POKEMON ACADEMY!"
+                                                                )
+                                                ),
+                                                _react2.default.createElement("section", { className: "section static" }),
+                                                _react2.default.createElement(
+                                                                "section",
+                                                                { id: "main_part" },
+                                                                _react2.default.createElement(_Containers.Header, null),
+                                                                _react2.default.createElement(
+                                                                                "div",
+                                                                                { className: "row" },
+                                                                                _react2.default.createElement(
+                                                                                                "div",
+                                                                                                { className: "col-md-2 offset-lg-2 center-block" },
+                                                                                                " ",
+                                                                                                logged ? _react2.default.createElement(_Containers.Menu, null) : null,
+                                                                                                " "
+                                                                                ),
+                                                                                _react2.default.createElement(
+                                                                                                "div",
+                                                                                                { className: "col-md-8 col-lg-8 center-block " },
+                                                                                                show_sign_up_dialog ? _react2.default.createElement(_Containers.SignUpDialog, null) : null,
+                                                                                                accountCreated ? _react2.default.createElement(
+                                                                                                                "p",
+                                                                                                                { className: "bg-success" },
+                                                                                                                "Account created, now you can log in"
+                                                                                                ) : null,
+                                                                                                wrongLoginOrPassword ? _react2.default.createElement(
+                                                                                                                "p",
+                                                                                                                { className: "bg-danger" },
+                                                                                                                "Invalid username or login"
+                                                                                                ) : null,
+                                                                                                user !== undefined && user.role === "admin" && activePage === "PokemonAdmin" ? _react2.default.createElement(_Containers.AdminPokemons, null) : null,
+                                                                                                user !== undefined && user.role === "admin" && activePage === "AddPokemonAdmin" ? _react2.default.createElement(_Containers.AddPokemonAdmin, null) : null,
+                                                                                                user !== undefined && user.role === "admin" && activePage === "TrainingAdmin" ? _react2.default.createElement(_Containers.AdminTrainings, null) : null,
+                                                                                                user !== undefined && user.role === "admin" && activePage === "AddTrainingAdmin" ? _react2.default.createElement(_Containers.AddTrainingAdmin, null) : null
+                                                                                )
+                                                                )
+                                                )
+                                )
+                );
 };
 
 exports.default = AppPresentation;
@@ -11795,7 +11851,7 @@ exports.default = AppPresentation;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+                        value: true
 });
 
 var _react = __webpack_require__(7);
@@ -11805,106 +11861,106 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var FilterSearchPanelPresentation = function FilterSearchPanelPresentation(_ref) {
-    var activePage = _ref.activePage,
-        _ref$onChangeSearchIn = _ref.onChangeSearchInput,
-        onChangeSearchInput = _ref$onChangeSearchIn === undefined ? function (f) {
-        return f;
-    } : _ref$onChangeSearchIn,
-        _ref$onChangeSortInpu = _ref.onChangeSortInput,
-        onChangeSortInput = _ref$onChangeSortInpu === undefined ? function (f) {
-        return f;
-    } : _ref$onChangeSortInpu;
+                        var activePage = _ref.activePage,
+                            _ref$onChangeSearchIn = _ref.onChangeSearchInput,
+                            onChangeSearchInput = _ref$onChangeSearchIn === undefined ? function (f) {
+                                                return f;
+                        } : _ref$onChangeSearchIn,
+                            _ref$onChangeSortInpu = _ref.onChangeSortInput,
+                            onChangeSortInput = _ref$onChangeSortInpu === undefined ? function (f) {
+                                                return f;
+                        } : _ref$onChangeSortInpu;
 
-    return _react2.default.createElement(
-        "div",
-        { className: "row", id: "search_panel" },
-        _react2.default.createElement(
-            "div",
-            { className: "col-xs-5 col-md-3" },
-            _react2.default.createElement("input", { type: "text", id: "search_for", className: "form-control", placeholder: "Search", onChange: onChangeSearchInput })
-        ),
-        _react2.default.createElement(
-            "div",
-            { className: "col-xs-5 col-md-3" },
-            activePage === "TrainingAdmin" ? _react2.default.createElement(
-                "select",
-                { className: "form-control", onChange: onChangeSortInput, onSelect: onChangeSortInput },
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Name Up"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Name Down"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Health Up"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Health Down"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Agility Up"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Agility Down"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Attack Up"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Attack Down"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Defence Up"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Defence Down"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Duration Up"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Duration Down"
-                )
-            ) : _react2.default.createElement(
-                "select",
-                { className: "form-control", onChange: onChangeSortInput, onSelect: onChangeSortInput },
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Name Up"
-                ),
-                _react2.default.createElement(
-                    "option",
-                    null,
-                    "Name Down"
-                )
-            )
-        )
-    );
+                        return _react2.default.createElement(
+                                                "div",
+                                                { className: "row", id: "search_panel" },
+                                                _react2.default.createElement(
+                                                                        "div",
+                                                                        { className: "col-xs-5 col-md-3" },
+                                                                        _react2.default.createElement("input", { type: "text", id: "search_for", className: "form-control", placeholder: "Search", onChange: onChangeSearchInput })
+                                                ),
+                                                _react2.default.createElement(
+                                                                        "div",
+                                                                        { className: "col-xs-5 col-md-3" },
+                                                                        activePage === "TrainingAdmin" ? _react2.default.createElement(
+                                                                                                "select",
+                                                                                                { className: "form-control", onChange: onChangeSortInput, onSelect: onChangeSortInput },
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Name Up"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Name Down"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Health Up"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Health Down"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Agility Up"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Agility Down"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Attack Up"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Attack Down"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Defence Up"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Defence Down"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Duration Up"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Duration Down"
+                                                                                                )
+                                                                        ) : _react2.default.createElement(
+                                                                                                "select",
+                                                                                                { className: "form-control", onChange: onChangeSortInput, onSelect: onChangeSortInput },
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Name Up"
+                                                                                                ),
+                                                                                                _react2.default.createElement(
+                                                                                                                        "option",
+                                                                                                                        null,
+                                                                                                                        "Name Down"
+                                                                                                )
+                                                                        )
+                                                )
+                        );
 };
 
 exports.default = FilterSearchPanelPresentation;
