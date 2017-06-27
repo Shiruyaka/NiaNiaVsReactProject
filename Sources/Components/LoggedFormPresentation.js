@@ -1,12 +1,12 @@
 import React from "react";
 
-const LoggedFormPresentation = ( {user} ) =>
+const LoggedFormPresentation = ( {user, logOutFunction = f => f} ) =>
 {
     return (
         <div>
 
         <div className="pull-right">
-                <button className="btn btn-primary btn-block" id="logged_panel_button">Log out</button>
+                <button className="btn btn-primary btn-block" id="logged_panel_button" onClick={logOutFunction}>Log out</button>
         </div>
 
             <div className="pull-right" id="logged_panel">

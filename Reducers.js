@@ -106,12 +106,26 @@ function sortUsers(value, array) {
                 if (a.username > b.username) return -1;
                 return 0;
             });
-}}
+
+        default:
+            return array
+    }}
 
 function removeByKey(array, params){
     array.some(function(item, index) {
         if(array[index]["_id"] === params){
             array.splice(index, 1);
+            return true;
+        }
+        return false;
+    });
+    return array;
+}
+
+function updateTraining(array, params, value){
+    array.some(function(item, index) {
+        if(array[index]["_id"] === params){
+            array[index] = value
             return true;
         }
         return false;
@@ -168,7 +182,6 @@ export const reducers = (state = {}, action = { type: null }) =>{
             return Object.assign({}, state, {
                 ...state,
                 pokemon_class: action.pokemon_class,
-                user_name: "Ola"
             });
 
         case c.ON_USERS_CLICK:
@@ -258,6 +271,7 @@ export const reducers = (state = {}, action = { type: null }) =>{
                     filtered_users: [],
                 });
 
+
         case c.SET_SEARCH_VALUE:
             return Object.assign({}, state, {
                 search_for: action.search_for,
@@ -280,7 +294,8 @@ export const reducers = (state = {}, action = { type: null }) =>{
                 {
                     trainings: sortPokemons("Name Up", action.trainings),
                     filtered_trainings: action.trainings,
-                    activePage: "TrainingAdmin"
+                    activePage: "TrainingAdmin",
+                    training_added: false
                 });
 
         case c.USERS_ADMIN:
@@ -289,7 +304,6 @@ export const reducers = (state = {}, action = { type: null }) =>{
                 filtered_users: action.users,
                 activePage: "UserAdmin"
             });
-
 
         case c.SET_SORT_VALUE:
             return Object.assign({}, state,
@@ -302,7 +316,8 @@ export const reducers = (state = {}, action = { type: null }) =>{
         case c.SHOW_ADD_POKEMON_ADMIN_PANEL:
             return Object.assign({}, state,
                 {
-                    activePage: "AddPokemonAdmin"
+                    activePage: "AddPokemonAdmin",
+                    pokemon_added: false
                 });
 
         case c.SHOW_ADD_TRAINING_ADMIN_PANEL:
@@ -312,16 +327,23 @@ export const reducers = (state = {}, action = { type: null }) =>{
                 });
 
         case c.ON_ADMIN_DELETE_POKEMON_FAILED:
-            alert("You cant remove specie if there are pokemons of this specie")
+
             return Object.assign({}, state,
                 {
                 });
 
+        case c.ON_ADMIN_DELETE_USER:
+            return Object.assign({}, state,
+                {
+                    filtered_users : removeByKey(state.filtered_users.filter(p => 1 === 1), action.deleted_id)
+                });
+
         case c.ON_ADMIN_DELETE_POKEMON_SUCCESS:
-        return Object.assign({}, state,
-            {
-                filtered_pokemons : removeByKey(state.filtered_pokemons.filter(p => 1 === 1), action.deleted_id)
-            });
+
+            return Object.assign({}, state,
+                {
+                    filtered_pokemons : removeByKey(state.filtered_pokemons.filter(p => 1 === 1), action.deleted_id)
+                });
 
         case c.ON_ADMIN_DELETE_TRAINING:
             return Object.assign({}, state,
@@ -329,7 +351,93 @@ export const reducers = (state = {}, action = { type: null }) =>{
                     filtered_trainings : removeByKey(state.filtered_trainings.filter(p => 1 === 1), action.deleted_id)
                 });
 
+        case c.ON_LOAD_PICTURE:
+            console.log(action);
+            return Object.assign({}, state,
+                {
+                    pictureToSend: action.pictureToSend
+                });
 
+        case c.SAVE_NEW_POKEMON_NAME:
+            return Object.assign({}, state,
+                {
+                    newPokemonName: action.newPokemonName
+                });
+        case c.NEW_POKEMON_ADDED:
+            return Object.assign({}, state,
+                {
+                    pokemon_added: true,
+                    pictureToSend: null,
+                    newPokemonName: ""
+                });
+
+        case c.NEW_TRAINING_ADDED:
+            return Object.assign({}, state,
+                {
+                   training_added: true,
+                });
+
+        case c.GET_TRAINING_TO_EDIT:
+            return Object.assign({}, state,{
+                training: action.training,
+                activePage: "EditTrainingAdmin"
+            });
+
+
+        case c.EDIT_TRAINING_NAME:
+            return Object.assign({}, state,{
+                training: {... state.training,
+                    name: action.new_training_name
+                }
+            });
+
+        case c.EDIT_TRAINING_AGILITY:
+            return Object.assign({}, state,{
+                training: {... state.training,
+                    agility: action.new_training_agility
+                }
+            });
+
+        case c.EDIT_TRAINING_ATTACK:
+            return Object.assign({}, state,{
+                training: {... state.training,
+                    attack: action.new_training_attack
+                }
+            });
+
+        case c.EDIT_TRAINING_DEFENCE:
+            return Object.assign({}, state,{
+                training: {... state.training,
+                    defence: action.new_training_defence
+                }
+            });
+
+        case c.EDIT_TRAINING_DURATION:
+            return Object.assign({}, state,{
+                training: {... state.training,
+                    duration: action.new_training_duration
+                }
+            });
+
+        case c.EDIT_TRAINING_HEALTH:
+            return Object.assign({}, state,{
+                training: {... state.training,
+                    health: action.new_training_health
+                }
+            });
+
+        case c.LOG_OUT:
+            return Object({}, state, {
+               state : {},
+
+            });
+
+        case c.EDITED_TRAINING:
+            return Object.assign({}, state,{
+                training_edited: true,
+                activePage : "TrainingAdmin",
+                filtered_trainings : updateTraining(state.filtered_trainings.filter(p => 1 === 1), action.training_id, action.new_training)
+            });
 
         default:
             return state;

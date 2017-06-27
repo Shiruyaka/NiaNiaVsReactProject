@@ -9,7 +9,7 @@ const fs = require('fs');
 import action_constans from "../ActionConstants"
 const router = express.Router();
 
-const upload = multer({dest: 'pokemon_images/'});
+const upload = multer({dest: 'Sources/pokemon_images/'});
 
 router.use(function (req, res, next) {
 
@@ -23,7 +23,6 @@ router.use(function (req, res, next) {
             res.redirect("/403");
         }
     }else{
-        console.log("TUU");
         res.redirect("/401")
     }
 });
@@ -91,9 +90,6 @@ router.get("/pokemons", function (req, res) {
             navibar["page"] = req.url;
             navibar["pokemonsList"] = pokemons;
 
-
-            console.log(pokemons);
-
             res.json({ type: action_constans.POKEMON_ADMIN,
             pokemons: pokemons});
             //res.render("admin_pokemons", navibar);
@@ -109,7 +105,6 @@ router.get("/trainings", function (req, res) {
         if(err){
             res.send(err);
         }else{
-            console.log(trainings);
 
             res.json({ type: action_constans.TRAINING_ADMIN,
                 trainings: trainings});
@@ -121,6 +116,7 @@ router.use(express.static(path.resolve(__dirname, "pokemon_images")));
 
 router.post("/add_pokemon", upload.single('file'), function (req, res) {
     const file = path.resolve(req.file.path + '.' + req.file.mimetype.split('/')[1]);
+    const specie = req.app.get("specie");
    fs.rename(req.file.path, (file), function (err) {
        if(err){
            console.log(err);
@@ -136,7 +132,10 @@ router.post("/add_pokemon", upload.single('file'), function (req, res) {
                      console.log(err);
                  }else{
                      req.flash("info", "New spiece has been added");
-                     res.redirect("/admin/pokemons");
+                     res.json({
+                         type: action_constans.NEW_POKEMON_ADDED
+                     });
+
                  }
              });
        }
@@ -155,7 +154,6 @@ router.delete("/edit_pokemon/:id", function (req, res) {
                 if(err){
                     console.log(err);
                 }else{
-                    console.log(pokes);
                     if (pokes.length == 0) {
                         fs.unlink(path.resolve("pokemon_images", spiece.photo), function () {
                             spiece.remove(function (err, resp) {
@@ -177,10 +175,10 @@ router.delete("/edit_pokemon/:id", function (req, res) {
     });
 });
 
-router.delete("/edit_training/:id", function (req, res) {
-    const training = req.app.get("training")
-    training.find({_id: req.params.id}).remove(function () {
-        res.json({ type: action_constans.ON_ADMIN_DELETE_TRAINING,
+router.delete("/edit_user/:id", function (req, res) {
+    const user = req.app.get("user");
+    user.findOne({_id: req.params.id}).remove(function () {
+        res.json({ type: action_constans.ON_ADMIN_DELETE_USER,
             deleted_id: req.params.id});
     });
 });
@@ -203,17 +201,20 @@ router.get("/add_pokemon", function (req, res) {
 });
 
 router.get("/edit_training/:id", function (req, res) {
-    app.training.findOne({_id:req.params.id}, function (err, training) {
+    const training = req.app.get("training");
+    training.findOne({_id:req.params.id}, function (err, training) {
         if(err){
             console.log(err);
         }else{
-            res.render("edit_training", {training:training});
+            res.json({ type: action_constans.GET_TRAINING_TO_EDIT,
+                training: training});
         }
     });
 });
 
 router.patch("/edit_training/:id", function (req, res) {
-    app.training.findOne({_id:req.params.id}, function (err, training) {
+    const training = req.app.get("training");
+    training.findOne({_id:req.params.id}, function (err, training) {
         if(err){
             console.log(err);
         }else{
@@ -228,8 +229,10 @@ router.patch("/edit_training/:id", function (req, res) {
                 if(err){
                     console.log(err);
                 }else{
-                    req.flash("info", "Training has been edited");
-                    res.redirect("/admin/trainings");
+                    res.json({ type: action_constans.EDITED_TRAINING,
+                        training_id : req.params.id,
+                        new_training: training}
+                );
                 }
             });
         }
@@ -237,13 +240,19 @@ router.patch("/edit_training/:id", function (req, res) {
     })
 });
 
-
+router.delete("/edit_training/:id", function (req, res) {
+    const training = req.app.get("training");
+    training.find({_id: req.params.id}).remove(function () {
+        res.json({ type: action_constans.ON_ADMIN_DELETE_TRAINING,
+            deleted_id: req.params.id});
+    });
+});
 
 
 
 router.post("/new_training", function (req, res, next) {
-
-    const newTraining = new app.training({
+    const training = req.app.get("training");
+    const newTraining = new training({
         name: req.body.name,
         health: req.body.health,
         agility: req.body.agility,
@@ -257,7 +266,7 @@ router.post("/new_training", function (req, res, next) {
             console.log(err);
         }else{
             req.flash("info", "Training has been added");
-            res.redirect("/admin/trainings");
+            res.json({ type: action_constans.NEW_TRAINING_ADDED});
         }
     })
 
@@ -270,13 +279,12 @@ router.get("/new_training", function (req, res) {
 router.get("/users", function (req, res) {
     const user = req.app.get("user");
     user.find({role:"user"}, function (err, users) {
-       if(err){
-           console.log(err);
-       }else{
-           console.log(users);
-           res.json({ type: action_constans.USERS_ADMIN,
-               users: users});
-       }
+        if(err){
+            console.log(err);
+        }else{
+            res.json({ type: action_constans.USERS_ADMIN,
+                users: users});
+        }
     });
 
 });
@@ -302,12 +310,7 @@ router.post("/new_admin", function (req, res, next) {
 
 });
 
-router.delete("/edit_user/:id", function (req, res) {
-    app.users.findOne({_id: req.params.id}).remove(function () {
-        req.flash("info", "User has been deleted");
-        res.redirect("/admin/users");
-    });
-});
+
 
 router.get("/edit_user/:id", function (req, res) {
    app.users.findOne({_id: req.params.id}, function (err, user) {

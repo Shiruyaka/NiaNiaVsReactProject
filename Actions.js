@@ -22,15 +22,16 @@ const fetchThenDispatch = (dispatch, url, method, body) =>
         .catch(logError);
 
 const fetchThenDispatchWithPicture = (dispatch, url, method, name, file) => {
-    let formData = new FormData();
-    formData.append("file", file);
-    formData.append("name",body.name);
+    let fData = new FormData();
+    fData.append("file", file);
+    fData.append("name", name);
+
     return fetch(
         url,
         {
             method,
             credentials: 'same-origin',
-            body: formData
+            body: fData
         }
     ).then(parseResponse).then(dispatch).catch(logError);
 };
@@ -80,6 +81,10 @@ export const saveReenteredPasswd = (e) => ({
     type: c.SAVE_REENTERED_PASSWD
 });
 
+export const saveNewPokemonName = (e) => ({
+    newPokemonName: e.target.value,
+    type: c.SAVE_NEW_POKEMON_NAME
+});
 
 export const loginToServer = e => dispatch => {
     e.preventDefault();
@@ -109,6 +114,24 @@ export const sendSignUpRequest = (e) => dispatch => {
         }));
 };
 
+export const saveNewTraining = (e) => dispatch =>{
+    e.preventDefault();
+    return fetchThenDispatch(
+        dispatch,
+        "/admin/new_training",
+        'POST',
+        JSON.stringify({
+            name: e.target.elements.name.value,
+            health: e.target.elements.health.value,
+            agility: e.target.elements.agility.value,
+            attack: e.target.elements.attack.value,
+            defence: e.target.elements.defence.value,
+            duration: e.target.elements.duration.value,
+
+        })
+    )
+};
+
 
 
 export const getPokemonsRequestAdmin = (e) => dispatch => {
@@ -127,15 +150,6 @@ export const getTrainingsRequestAdmin = (e) => dispatch => {
         'GET',
         null
     )
-};
-
-export const onUserAdminClick = () => dispatch => {
-  fetchThenDispatch(
-      dispatch,
-      'admin/users',
-      'GET',
-      null
-  )
 };
 
 export const showAddTrainingAdmin = () =>
@@ -172,17 +186,14 @@ export const showAddPokemonAdmin = () =>
         type: c.SHOW_ADD_POKEMON_ADMIN_PANEL
     });
 
-export const sendAddPokemonRequest = (e) => dispatch =>{
-
-    alert(e.target.elements.name.value);
-    alert(e.target.elements.file.value);
+export const sendAddPokemonRequest = (file, name) => dispatch =>{
 
     return fetchThenDispatchWithPicture(
         dispatch,
         "admin/add_pokemon",
         "POST",
-        e.target.elements.name.value,
-        e.target.elements.file.value
+        name,
+        file
     );
 };
 
@@ -195,14 +206,32 @@ export const deleteAdminPokemon = (e) => dispatch => {
   );
 };
 
-export const deleteAdminTraining = (e) => dispatch => {
+export const saveEditTraining = (e) => dispatch => {
+    e.preventDefault();
     return fetchThenDispatch(
         dispatch,
-        "admin/edit_training/"+e.target.value,
+        "admin/edit_training/"+ e.target.elements.name.id,
+        "PATCH",
+        JSON.stringify({
+            name : e.target.elements.name.value,
+            health : e.target.elements.health.value,
+            agility : e.target.elements.agility.value,
+            attack : e.target.elements.attack.value,
+            defence : e.target.elements.defence.value,
+            duration : e.target.elements.duration.value,
+        })
+    );
+};
+
+export const deleteAdminUser = (e) => dispatch => {
+    return fetchThenDispatch(
+        dispatch,
+        "admin/edit_user/"+e.target.value,
         "DELETE",
         JSON.stringify({})
     );
 };
+
 
 
 export const onChangeSearchInput = (e) => ({
@@ -219,4 +248,94 @@ export const onChangeSortInput = (e) => {
             type: c.SET_SORT_VALUE
         });
 };
+
+export const onPictureLoad = (e) => {
+    return({
+        type:c.ON_LOAD_PICTURE,
+        pictureToSend: e.target.files[0]
+    })
+};
+
+export const logOutFunction = () =>{
+  return({
+      type : c.LOG_OUT
+  })
+};
+
+export const onUserAdminClick = () => dispatch => {
+    fetchThenDispatch(
+        dispatch,
+        'admin/users',
+        'GET',
+        null
+    )
+};
+
+export const editAdminTraining = (e) => dispatch => {
+    fetchThenDispatch(
+        dispatch,
+        'admin/edit_training/' + e.target.value ,
+        'GET',
+        null
+    )
+};
+
+
+export const deleteAdminTraining = (e) => dispatch => {
+    return fetchThenDispatch(
+        dispatch,
+        "admin/edit_training/"+e.target.value,
+        "DELETE",
+        JSON.stringify({})
+    );
+};
+
+
+export const changeTrainingName = (e) => {
+    return ({
+        type: c.EDIT_TRAINING_NAME,
+        new_training_name : e.target.value
+    })
+};
+
+export const changeTrainingHealth = (e) => {
+    return ({
+        type: c.EDIT_TRAINING_HEALTH,
+        new_training_health : e.target.value
+    })
+};
+
+
+export const changeTrainingAttack = (e) => {
+    return ({
+        type: c.EDIT_TRAINING_ATTACK,
+        new_training_attack : e.target.value
+    })
+};
+
+
+export const changeTrainingAgility = (e) => {
+    return ({
+        type: c.EDIT_TRAINING_AGILITY,
+        new_training_agility : e.target.value
+    })
+};
+
+
+export const changeTrainingDuration = (e) => {
+    return ({
+        type: c.EDIT_TRAINING_DURATION,
+        new_training_duration : e.target.value
+    })
+};
+
+
+export const changeTrainingDefence = (e) => {
+    return ({
+        type: c.EDIT_TRAINING_DEFENCE,
+        new_training_defence : e.target.value
+    })
+};
+
+
 

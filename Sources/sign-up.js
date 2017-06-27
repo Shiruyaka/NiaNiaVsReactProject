@@ -22,7 +22,6 @@ router.get("/signup", function (req, res) {
             for(let i=0; i<users.length; i++){
                 logins.push(users[i].username.toString().toLowerCase());
             }
-            console.log(logins);
             res.json(
                 {
                     users: logins

@@ -1,28 +1,39 @@
 import React from "react";
 import {FilterPanel} from "./Containers"
 
-const AdminUsersPresentation = ( {filtered_users} ) =>
+const AdminUsersPresentation = ( {filtered_users, deleteAdminUser = f => f} ) =>
 
     <div className="container" style={{padding: 10}}>
 
+        <h3>User List</h3>
+        <br/>
+
         <FilterPanel/>
 
-        <div className="row" style={{margin_bottom: 20}}>
+        {(filtered_users.length === 0) ?
+            <p>There is no users!</p> :
 
-            <div className="col-xs-6 col-md-2">
-                <h4>Username</h4>
+            <div className="row" style={{margin_bottom: 20}}>
+
+                <div className="col-xs-6 col-md-2">
+                    <h4>Username</h4>
+                </div>
+
+
+                <div className="col-xs-6 col-md-2">
+                    <h4>First name</h4>
+                </div>
+
+                <div className="col-xs-6 col-md-2">
+                    <h4>Last name</h4>
+                </div>
+
             </div>
+        }
 
 
-            <div className="col-xs-6 col-md-2">
-                <h4>First name</h4>
-            </div>
 
-            <div className="col-xs-6 col-md-2">
-                <h4>Last name</h4>
-            </div>
 
-        </div>
 
         {filtered_users.map(function(row, i){
             return (
@@ -43,7 +54,7 @@ const AdminUsersPresentation = ( {filtered_users} ) =>
 
 
                     <div className="col-xs-2 col-md-2">
-                        <button className="btn btn-danger" value={row._id}>Delete</button>
+                        <button className="btn btn-danger" value={row._id} onClick={deleteAdminUser}>Delete</button>
                     </div>
 
                 </div>

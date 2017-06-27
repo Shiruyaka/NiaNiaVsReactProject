@@ -1,7 +1,7 @@
 import React from "react";
 import Parallax from 'react-simple-parallax';
 
-import { Header, SignUpDialog, Menu, AdminPokemons, AddPokemonAdmin , AdminTrainings, AddTrainingAdmin, AdminUsers} from "./Containers"
+import { Header, SignUpDialog, Menu, AdminPokemons, AddPokemonAdmin , AdminTrainings, AddTrainingAdmin, AdminUsers, EditTrainingAdmin} from "./Containers"
 
 import { connect } from "react-redux"
 
@@ -12,7 +12,8 @@ const AppPresentation = ( {user, activePage = "", logged = false, wrongLoginOrPa
         <div>
 
 
-            <main className="wrapper">
+            <main className="wrapper" id="go_there_after_login">
+
 
                 <section className="section parallax bg1">
                     <h1>POKEMON ACADEMY!</h1>
@@ -38,6 +39,7 @@ const AppPresentation = ( {user, activePage = "", logged = false, wrongLoginOrPa
                             {(user !== undefined && user.role === "admin" &&  activePage === "TrainingAdmin") ? <AdminTrainings/>: null }
                             {(user !== undefined && user.role === "admin" &&  activePage === "AddTrainingAdmin") ? <AddTrainingAdmin/>: null }
                             {(user !== undefined && user.role === "admin" && activePage === "UserAdmin") ? <AdminUsers/> : null}
+                            {(user !== undefined && user.role === "admin" && activePage === "EditTrainingAdmin") ? <EditTrainingAdmin/> : null}
 
                         </div>
 

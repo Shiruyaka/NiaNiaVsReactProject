@@ -21,9 +21,6 @@ module.exports = function () {
 
 passport.use("login", new LocalStrategy(function (username, password, done) {
 
-        console.log("Bartek chuj");
-        console.log(username, password);
-
         user.findOne({username: username}, function (err, user) {
             if(err){ return done(err); }
             if(!user){

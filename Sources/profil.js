@@ -30,7 +30,6 @@ router.get("/change_passwd", function (req, res) {
 });
 
 router.patch("/change_passwd", function (req, res, next) {
-    console.log(req.user);
     req.user.checkPassword(req.body.old, function (err, isMatch) {
 
         if(err){

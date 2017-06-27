@@ -1,36 +1,27 @@
 import React from "react";
 
-const AddTrainingAdminPresentation = () => {
+const AddTrainingAdminPresentation = ({training_added, saveNewTraining = f => f}) => {
     return (
         <div>
-
             <h3>Add Training</h3>
             <br/>
 
-            <div className="col-xs-6 col-md-6">
+            <div className="col-xs-6 col-md-6" id="add_admin_training">
 
-                <form id="add_admin_training">
+                { (training_added) ? <p className="bg-success"> New training have been added</p> : null }
 
-                    <input name="name" type="text" className="form-control" placeholder="Name" required autoFocus
-                           style={{margin_bottom: 10}}/>
 
-                    <input name="health" type="number" min="0" className="form-control" placeholder="Health" required
-                           style={{margin_bottom: 10}}/>
+                    <form onSubmit={saveNewTraining}>
 
-                    <input name="agility" type="number" min="0" className="form-control" placeholder="Agility" required
-                           style={{margin_bottom: 10}}/>
+                        <input name="name" type="text" className="form-control" placeholder="Name" required autoFocus />
+                        <input name="health" type="number" min="0" className="form-control" placeholder="Health" required />
+                        <input name="agility" type="number" min="0" className="form-control" placeholder="Agility" required/>
+                        <input name="attack" type="number" min="0" className="form-control" placeholder="Attack" required />
+                        <input name="defence" type="number" min="0" className="form-control" placeholder="Defence" required />
+                        <input name="duration" type="number" min="0" className="form-control" placeholder="Duration" required/>
+                        <input type="submit" value="Add" className="btn btn-primary btn-block"/>
+                    </form>
 
-                    <input name="attack" type="number" min="0" className="form-control" placeholder="Attack" required
-                           style={{margin_bottom: 10}}/>
-
-                    <input name="defence" type="number" min="0" className="form-control" placeholder="Defence" required
-                           style={{margin_bottom: 10}}/>
-
-                    <input name="duration" type="number" min="0" className="form-control" placeholder="Duration"
-                           required style={{margin_bottom: 10}}/>
-
-                    <input type="submit" value="Add" className="btn btn-primary btn-block"/>
-                </form>
             </div>
         </div>
     )

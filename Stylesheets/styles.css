@@ -83,7 +83,7 @@ div.panel {
 }
 
 div.panel.collapsed{
-    max-height: 1000px;
+    max-height: 100px;
 }
 
 body, html {
@@ -163,6 +163,14 @@ table{
 
 .bg2::after {
     background-color: white;
+}
+
+#add_admin_training{
+    margin-bottom: 10px;
+}
+
+#pokemons_admin_list{
+    margin-bottom: 20px;
 }
 
 .form-control{

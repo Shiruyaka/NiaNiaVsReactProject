@@ -11,10 +11,13 @@ import AdminTrainingsPresentation from "./AdminTrainingsPresentation"
 import FilterSearchPanelPresentation from "./FilterSearchPanelPresentation"
 import AddTrainingAdminPresentation from "./AddTrainingAdminPresentation"
 import AdminUsersPresentation from "./AdminUsersPresentation"
+import EditTrainingAdminPresentation from "./EditTrainingAdminPresentation"
 import { showLoginForm, hideLoginForm, showSignUpDialog, hideSignUpDialog, createAccount, saveUsername,
-         saveFirstname, saveLastname, savePasswd, saveReenteredPasswd, sendSignUpRequest, loginToServer,
-         onHomeClick, onPokemonsClick,  onUsersClick, onTrainingsClick, getPokemonsRequestAdmin, showAddPokemonAdmin,
-         sendAddPokemonRequest, onChangeSearchInput, onChangeSortInput, getTrainingsRequestAdmin, showAddTrainingAdmin, deleteAdminPokemon, deleteAdminTraining, onUserAdminClick
+    saveFirstname, saveLastname, savePasswd, saveReenteredPasswd, sendSignUpRequest, loginToServer,
+    onHomeClick, onPokemonsClick,  onUsersClick, onTrainingsClick, getPokemonsRequestAdmin, showAddPokemonAdmin,
+    sendAddPokemonRequest, onChangeSearchInput, onChangeSortInput, getTrainingsRequestAdmin, showAddTrainingAdmin, deleteAdminPokemon, deleteAdminTraining, onUserAdminClick, deleteAdminUser,
+    saveNewTraining, saveEditTraining, editAdminTraining, changeTrainingName, changeTrainingAttack,changeTrainingAgility, changeTrainingDuration, changeTrainingDefence, changeTrainingHealth, onPictureLoad,
+    saveNewPokemonName,logOutFunction
 } from "../../Actions"
 
 
@@ -74,6 +77,9 @@ export const LoggedPanel = connect(
         ({user : user}),
     dispatch =>
         ({
+            logOutFunction(){
+                dispatch(logOutFunction())
+            }
         })
 )(LoggedFormPresentation);
 
@@ -168,7 +174,7 @@ export const FilterPanel = connect(
 )(FilterSearchPanelPresentation);
 
 export const AdminPokemons = connect(
-    ({pokemons, search_for, filtered_pokemons})=>
+    ({pokemons, search_for, filtered_pokemons, onPictureLoad})=>
         ({
             pokemons: pokemons,
             search_for: search_for,
@@ -178,6 +184,10 @@ export const AdminPokemons = connect(
         ({
             deleteAdminPokemon(e){
                 dispatch(deleteAdminPokemon(e))
+            },
+
+            loadPicture(e){
+                dispatch(onPictureLoad(e));
             }
         })
 )(AdminPokemonPresentation);
@@ -193,6 +203,9 @@ export const AdminTrainings = connect(
             deleteAdminTraining(e){
                 dispatch(deleteAdminTraining(e))
             },
+            editAdminTraining(e){
+                dispatch(editAdminTraining(e))
+            }
         })
 )(AdminTrainingsPresentation);
 
@@ -203,25 +216,87 @@ export const AdminUsers = connect(
         }),
     dispatch =>
         ({
+            deleteAdminUser(e){
+                dispatch(deleteAdminUser(e))
+            },
         })
 )(AdminUsersPresentation);
 
 export const AddPokemonAdmin = connect(
-    ({}) =>
-        ({}),
+    ({pictureToSend, newPokemonName, pokemon_added}) =>
+        ({pictureToSend, newPokemonName, pokemon_added}),
     dispatch =>
         ({
-            onSendNewPokemon(e){
-                dispatch(sendAddPokemonRequest(e))
+            onSendNewPokemon(file, name){
+                dispatch(sendAddPokemonRequest(file, name))
+            },
+            onPictureLoad(e){
+                dispatch(onPictureLoad(e));
+            },
+            onNameChange(e){
+                dispatch(saveNewPokemonName(e))
             }
         })
 )(AddPokemonAdminPresentation);
 
 export const AddTrainingAdmin = connect(
-    ({}) =>
-        ({}),
+    ({training_added}) =>
+        ({training_added: training_added}),
     dispatch =>
         ({
+            saveNewTraining(e){
+                dispatch(saveNewTraining(e))
+            },
+            onChangeTrainingName(e){
+                dispatch(saveTrainingName(e))
+            },
+            onChangeTrainingHealth(e){
+                dispatch(saveTrainingHealth(e))
+            },
+            onChangeTrainingAgility(e){
+                dispatch(saveTrainingAgility(e))
+            },
+            onChangeTrainingDefence(e){
+                dispatch(saveTrainingDefence(e))
+            },
+            onChangeTrainingDuration(e){
+                dispatch(saveTrainingDuration(e))
+            },
+            onChangeTrainingAttack(e){
+                dispatch(saveTrainingAttack(e))
+            },
         })
 )(AddTrainingAdminPresentation);
+
+export const EditTrainingAdmin = connect(
+    ({training}) =>
+        ({training: training}),
+    dispatch =>
+        ({
+            saveEditTraining(e){
+                dispatch(saveEditTraining(e))
+            },
+            changeTrainingName(e){
+                dispatch(changeTrainingName(e))
+            },
+            changeTrainingHealth(e){
+                dispatch(changeTrainingHealth(e))
+            },
+            changeTrainingAttack(e){
+                dispatch(changeTrainingAttack(e))
+            },
+            changeTrainingDefence(e){
+                dispatch(changeTrainingDefence(e))
+            },
+            changeTrainingDuration(e){
+                dispatch(changeTrainingDuration(e))
+            },
+            changeTrainingAgility(e){
+                dispatch(changeTrainingAgility(e))
+            },
+
+
+
+        })
+)(EditTrainingAdminPresentation);
 
